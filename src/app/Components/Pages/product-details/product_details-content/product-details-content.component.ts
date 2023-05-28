@@ -44,16 +44,19 @@ export class ProductDetailsComponent {
           this.spinner.hide();
 
           // Check if the product is favorited
-          let userId = JSON.parse(localStorage.getItem('access_token')!).UserId;
-          this.favouritesService.isProductFavorited(userId, productId).subscribe({
-            next: (response: any) => {
-              console.log(response);
-              this.isFavorited = response.exists;
-            },
-            error: (err: any) => {
-              console.log(err);
-            }
-          });
+          if (localStorage.getItem('access_token') != null) {
+            let userId = JSON.parse(localStorage.getItem('access_token')!).UserId;
+            this.favouritesService.isProductFavorited(userId, productId).subscribe({
+              next: (response: any) => {
+                console.log(response);
+                this.isFavorited = response.exists;
+              },
+              error: (err: any) => {
+                console.log(err);
+              }
+            });
+          }
+
         },
         error: (err: any) => {
           console.log(err);
