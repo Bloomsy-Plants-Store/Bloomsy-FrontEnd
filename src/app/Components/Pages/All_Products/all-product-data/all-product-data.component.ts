@@ -167,7 +167,7 @@ export class AllProductDataComponent implements OnInit {
   }
 
   checkProductInFavourites() {
-    if (JSON.parse(localStorage.getItem('access_token')!)) {
+     if (localStorage.getItem('access_token') != null) {
       let userId = JSON.parse(localStorage.getItem('access_token')!).UserId;
       this.Products.forEach((element: any) => {
         this.favouritesService.isProductFavorited(userId, element._id).subscribe({

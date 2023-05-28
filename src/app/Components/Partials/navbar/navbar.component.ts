@@ -13,7 +13,7 @@ export class NavbarComponent {
   userName:any;
   errorMessage: any;
   isAdmin: boolean = false;
-  total: any ;
+  total: any =0 ;
 
   constructor(private authService: AuthService,
     private router: Router,
@@ -73,9 +73,7 @@ export class NavbarComponent {
       });
 
     }
-    else {
-     this.total = 0;
-    }
+
 
   }
 
