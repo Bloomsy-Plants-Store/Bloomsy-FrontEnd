@@ -1,5 +1,4 @@
 import { Component , OnInit} from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { CartService } from 'src/app/Services/cart.service';
 import { CheckoutService } from 'src/app/Services/checkout.service';
 import { Router } from '@angular/router';
@@ -19,13 +18,17 @@ export interface Product {
 })
 export class CartDetailsComponent implements OnInit{
 
-  constructor( public myService: CartService, private checkoutService :CheckoutService, private router:Router) { }
+  constructor(public myService: CartService,
+    private checkoutService: CheckoutService,
+    private router: Router) {
+    this.getAllProductsOnCart();
+   }
 
 
   displayedColumns: string[] = ['image', 'name', 'price', 'quantity', 'total', 'delete'];
 
   dataSource: Product[] = [];
-
+flag : any;
   decreaseQuantity(element:any) {
     if (element.quantity > 1) {
       element.quantity--;
@@ -66,9 +69,11 @@ export class CartDetailsComponent implements OnInit{
     let userToken = localStorage.getItem('x-auth-token');
     let productId = element.product_id._id;
     console.log(productId);
-    this.myService.deleteProductFromCart(userId, productId,userToken).subscribe({
-      next: (response: any) => {
-        this.getAllProductsOnCart();
+    this.myService.deleteProductFromCart(userId, productId, userToken)
+      .subscribe({
+        next: (response: any) => {
+          this.myService.cartUpdatedSubject.next();
+
       },
       error: (err) => {
         console.log(err);
@@ -77,7 +82,7 @@ export class CartDetailsComponent implements OnInit{
   }
 
   checkout() {
-    this.checkoutService.setCartObject(+this.totalPriceForAllProduct(), this.dataSource);
+    this.checkoutService.setCartObject(+this.totalPriceForAllProduct(), this.dataSource, this.flag = "checkout");
 
   }
 
@@ -86,8 +91,10 @@ export class CartDetailsComponent implements OnInit{
     let userToken = localStorage.getItem('x-auth-token');
     let productId = element.product_id._id;
     let quantity = element.quantity;
-    this.myService.updateSpecificProduct(user, productId, quantity, userToken).subscribe({
-      next: (response: any) => {
+    this.myService.updateSpecificProduct(user, productId, quantity, userToken)
+      .subscribe({
+        next: (response: any) => {
+          this.myService.cartUpdatedSubject.next();
       },
       error: (err) => {
       console.log(err);
@@ -98,7 +105,10 @@ export class CartDetailsComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.getAllProductsOnCart();
+    this.myService.cartUpdatedObservable.subscribe(() => {
+      this.getAllProductsOnCart();
+    })
+
   }
 
    }

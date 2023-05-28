@@ -52,25 +52,20 @@
 
     <a class="navbar-brand mx-auto ms-auto title" routerLink="/">Bloomsy</a>
 
-    <ul class="navbar-nav d-flex flex-row gap-3 ms-auto align-items-center">
+    <ul class="navbar-nav d-flex flex-row gap-1 ms-auto align-items-center">
       <li class="nav-item me-lg-0" *ngIf="!getUserNameFromLocalStorage()">
         <a class="nav-link" routerLinkActive="active" routerLink="/login">
           <i class="fa-solid fa-user"></i>
         </a>
       </li>
-      <li
-        class="nav-item me-lg-0"
-        *ngIf="getUserNameFromLocalStorage()"
-        data-bs-toggle="modal"
-        data-bs-target="#ProfileModal"
-      >
+      <li class="nav-item me-lg-0 center-icon" *ngIf="getUserNameFromLocalStorage()" data-bs-toggle="modal" data-bs-target="#ProfileModal">
         <a class="text-white text-decoration-none text-capitalize" style="cursor: pointer;">
           <i class="fa-solid fa-user mx-2"></i>
           {{ getUserNameFromLocalStorage() }}
         </a>
       </li>
       <li class="nav-item me-lg-0" [ngClass]="{'cart-shift': !getUserRole()}">
-        <a class="nav-link" routerLink="/cart">
+        <a class="nav-link cart" routerLink="/cart">
           <i class="fas fa-shopping-cart">
             <span class="cart-badge">{{ total }}</span>
           </i>

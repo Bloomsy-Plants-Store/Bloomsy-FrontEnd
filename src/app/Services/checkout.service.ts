@@ -11,10 +11,11 @@ export class CheckoutService {
 
   total: number = 0;
   cartItems = [];
-
-  setCartObject(total: number, cart: any) {
+  flag : any;
+  setCartObject(total: number, cart: any, flag : any) {
     this.total = total;
     this.cartItems = cart;
+    this.flag = flag;
   }
 
   sendDataToStripe(cardN:any, cardM:any , cardY :any, cardCVC :any) {

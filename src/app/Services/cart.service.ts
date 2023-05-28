@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,8 @@ import { Observable } from 'rxjs';
 export class CartService {
 private Base_URL = "https://bloomsy.onrender.com/users/"
   constructor(private readonly myClient: HttpClient) { }
-
+  public cartUpdatedSubject: Subject<void> = new Subject<any>();
+  public cartUpdatedObservable: Observable<void> = this.cartUpdatedSubject.asObservable();
 
   // add product to cart
   // /:id/cart/add
@@ -17,23 +18,23 @@ private Base_URL = "https://bloomsy.onrender.com/users/"
   }
 
   // get all products in cart
-  GetAllProductsInCart(id:Number) {
+  GetAllProductsInCart(id:Number): Observable<any> {
     return this.myClient.get(this.Base_URL+id+"/cart")
   }
 
   //delete specific product from cart
-  deleteProductFromCart(id:Number , cartItemId:Number, userToken:any) {
+  deleteProductFromCart(id:Number , cartItemId:Number, userToken:any): Observable<any> {
     return this.myClient.delete(this.Base_URL + id+"/cart/"+cartItemId,{headers: new HttpHeaders().set('x-auth-token', userToken)});
   }
 
   // update specific product from cart
   // /:id/cart/:cartItemId
-  updateSpecificProduct(id: Number, cartItemId: Number, quantity: Number, userToken:any) {
+  updateSpecificProduct(id: Number, cartItemId: Number, quantity: Number, userToken:any): Observable<any> {
     return this.myClient.put(this.Base_URL + id + "/cart/" + cartItemId,{quantity} ,{headers: new HttpHeaders().set('x-auth-token', userToken)});
   }
 
   // delete all products from cart
-  deleteAllProductsFromCart(userId: Number, ) {
+  deleteAllProductsFromCart(userId: Number, ): Observable<any> {
     return this.myClient.delete(this.Base_URL + userId + "/cart/all",);
   }
 

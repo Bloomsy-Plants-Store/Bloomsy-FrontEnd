@@ -24,6 +24,9 @@ nav .fa-bars {
   position: relative;
 }
 
+.cart {
+ padding-right: -20px !important;
+}
 
 .newTitle{
   display: none;

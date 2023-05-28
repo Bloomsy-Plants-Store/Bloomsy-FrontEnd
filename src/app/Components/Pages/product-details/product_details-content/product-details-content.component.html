@@ -108,7 +108,7 @@
           <button
             type="button"
             class="btn round-black-btn"
-            (click)="addProductToCart(Product?._id, quantity)"
+            (click)="addProductToCart(Product?._id, Product?.price)"
           >
             Add to Cart &nbsp;<i class="fas fa-shopping-cart"></i>
           </button>
@@ -144,11 +144,12 @@
           <button
             type="button"
             class="w-100 btn buy-now round-black-btn"
-            (click)="addProductToCart(Product?._id, quantity)"
+            (click)="checkout()"
             routerLink="/checkout"
           >
             Buy Now
           </button>
+
         </div>
 
         <hr class="mt-4 mb-4" />

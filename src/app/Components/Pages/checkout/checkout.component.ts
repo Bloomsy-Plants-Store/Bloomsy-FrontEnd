@@ -24,6 +24,8 @@ export class CheckoutComponent{
   sectionVisible = false;
   total: number = 0;
   Items: any = [];
+  flag : any;
+
   constructor(private fb: FormBuilder,
     private router: Router,
     private spinner: NgxSpinnerService,
@@ -80,8 +82,9 @@ export class CheckoutComponent{
     }, 800);
 
     this.total = this.checkoutService.total;
-    this.Items = this.checkoutService.cartItems
-    console.log(this.total, this.Items);
+    this.Items = this.checkoutService.cartItems;
+    this.flag = this.checkoutService.flag;
+    console.log(this.total, this.Items, this.flag);
   }
   get inputName() {
     return this.validationCheckoutForm.get('name');
@@ -123,17 +126,35 @@ export class CheckoutComponent{
     })
   }
   order() {
+    console.log("Order")
     let user = JSON.parse(localStorage.getItem('access_token')!).UserId;
+
     this.orderService.makeOrder(user, this.total, this.Items)
       .subscribe({
         next: (data: any) => {
+          console.log("after order service ")
           console.log(data);
-          this.clearAllCart();
+          if (this.flag != "buyNow") {
+            this.clearAllCart();
+          } else {
+            this.showModal();
+          }
         }, error(err) {
           console.log(err);
         }
     })
   }
+
+  // buyNow() {
+  //   let user = JSON.parse(localStorage.getItem('access_token')!).UserId;
+  //   this.orderService.makeOrder(user, this.total, this.Items)
+  //     .subscribe({
+  //       next: (data: any) => {
+  //       }, error(err) {
+  //         console.log(err);
+  //       }
+  //   })
+  // }
 
   submitCheckout(): void{
     if (this.validationCheckoutForm.valid) {
@@ -143,6 +164,7 @@ export class CheckoutComponent{
       const creditCVC = this.validationCheckoutForm.get('creditCVC')?.value;
       this.checkoutService.sendDataToStripe(creditNumber, creditMonth, creditYear, creditCVC).subscribe({
         next: (data: any) => {
+          console.log("after stripe")
           this.order();
         }, error(err) {
           console.log(err);
@@ -150,6 +172,8 @@ export class CheckoutComponent{
       })
     }
   }
+
+
   showModal(){
     const modal = new bootstrap.Modal(this.successModal.nativeElement);
     modal.show();

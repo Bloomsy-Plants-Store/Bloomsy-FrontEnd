@@ -128,6 +128,7 @@ export class AllProductDataComponent implements OnInit {
       .addProductToCart(userId, id, price, userToken)
       .subscribe({
         next: (response: any) => {
+          this.myCartService.cartUpdatedSubject
           this.spinner.hide();
         },
         error: (err: any) => {

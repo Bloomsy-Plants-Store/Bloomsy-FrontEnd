@@ -13,17 +13,21 @@ export class NavbarComponent {
   userName:any;
   errorMessage: any;
   isAdmin: boolean = false;
-  total: any;
+  total: any ;
 
   constructor(private authService: AuthService,
     private router: Router,
-    private cartService: CartService) { }
+    private cartService: CartService,
+  ) {
+    this.getTotalItemsInCart();
+   }
 
   ngOnInit() {
   this.nav = document.querySelector("nav")!;
-  setInterval(() => {
-    this.getTotalItemsInCart();
-  }, 1000);
+    this.cartService.cartUpdatedObservable.subscribe(() => {
+      this.getTotalItemsInCart();
+    })
+
   }
 
   @HostListener("window:scroll", [])
@@ -58,7 +62,8 @@ export class NavbarComponent {
   getTotalItemsInCart(): any {
     if (localStorage.getItem('access_token') != null) {
       let userId = JSON.parse(localStorage.getItem('access_token')!).UserId ;
-      this.cartService.GetAllProductsInCart(userId).subscribe({
+      this.cartService.GetAllProductsInCart(userId)
+        .subscribe({
         next: (data: any) => {
           this.total =data.cart.length ? data.cart.length : 0;
         },error(err) {
