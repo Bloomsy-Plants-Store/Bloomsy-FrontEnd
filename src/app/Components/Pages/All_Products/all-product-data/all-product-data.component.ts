@@ -167,16 +167,19 @@ export class AllProductDataComponent implements OnInit {
   }
 
   checkProductInFavourites() {
-    let userId = JSON.parse(localStorage.getItem('access_token')!).UserId;
-    this.Products.forEach((element: any) => {
-      this.favouritesService.isProductFavorited(userId, element._id).subscribe({
-        next: (response: any) => {
-          this.favoritesMap.set(element._id, response.exists);
-        },
-        error: (err: any) => {
-          console.log(err);
-        },
+    if (JSON.parse(localStorage.getItem('access_token')!)) {
+      let userId = JSON.parse(localStorage.getItem('access_token')!).UserId;
+      this.Products.forEach((element: any) => {
+        this.favouritesService.isProductFavorited(userId, element._id).subscribe({
+          next: (response: any) => {
+            this.favoritesMap.set(element._id, response.exists);
+          },
+          error: (err: any) => {
+            console.log(err);
+          },
+        });
       });
-    });
+    }
+
   }
 }
