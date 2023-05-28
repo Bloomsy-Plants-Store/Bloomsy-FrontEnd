@@ -1,0 +1,122 @@
+<!-- Navbar -->
+
+<nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-scroll d-flex">
+
+  <div class="container-fluid">
+    <div class="d-flex align-items-start ms-3">
+      <ul class="navbar-nav me-auto ms-auto mb-2 mb-lg-0 d-flex gap-3 myyy">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" routerLink="/" >HOME</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/products">PRODUCTS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/about-us">ABOUT</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/contact-us">CONTACT US</a>
+        </li>
+      </ul>
+
+      <button
+        class="navbar-toggler ms-auto mx-4"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <a class="navbar-brand mx-auto ms-auto newTitle" routerLink="/">Bloomsy</a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto ms-auto mb-2 mb-lg-0 d-flex gap-3">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" routerLink="/" >HOME</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/products">PRODUCTS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/about-us">ABOUT</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/contact-us">CONTACT US</a>
+        </li>
+      </ul>
+    </div>
+
+    <a class="navbar-brand mx-auto ms-auto title" routerLink="/">Bloomsy</a>
+
+    <ul class="navbar-nav d-flex flex-row gap-3 ms-auto align-items-center">
+      <li class="nav-item me-lg-0" *ngIf="!getUserNameFromLocalStorage()">
+        <a class="nav-link" routerLinkActive="active" routerLink="/login">
+          <i class="fa-solid fa-user"></i>
+        </a>
+      </li>
+      <li
+        class="nav-item me-lg-0"
+        *ngIf="getUserNameFromLocalStorage()"
+        data-bs-toggle="modal"
+        data-bs-target="#ProfileModal"
+      >
+        <a class="text-white text-decoration-none text-capitalize" style="cursor: pointer;">
+          <i class="fa-solid fa-user mx-2"></i>
+          {{ getUserNameFromLocalStorage() }}
+        </a>
+      </li>
+      <li class="nav-item me-lg-0" [ngClass]="{'cart-shift': !getUserRole()}">
+        <a class="nav-link" routerLink="/cart">
+          <i class="fas fa-shopping-cart">
+            <span class="cart-badge">{{ total }}</span>
+          </i>
+        </a>
+      </li>
+      <li class="nav-item me-lg-0" *ngIf="getUserRole()">
+        <a class="nav-link" routerLink="/dashboard">
+          <i class="fa fa-gear fa-spin" style="font-size:20px"></i>
+        </a>
+      </li>
+    </ul>
+
+  </div>
+
+</nav>
+
+<!--Profile Modal-->
+<div class="modal fade" id="ProfileModal">
+  <div class="modal-dialog modal-confirm modal-dialog-centered my-auto">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="d-flex flex-column justify-content-center w-100">
+          <div class="icon-box text-center">
+            <img
+              src="./assets/images/icons/usericon.gif"
+            />
+          </div>
+          <h4 class="modal-title">Welcome Back <br><span class="userName-Style">{{userName}}</span></h4>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <form class="w-100" (ngSubmit)="logout()">
+          <button type="submit" class="btn btn-info me-4" routerLink="/" >
+            LogOut
+          </button>
+          <a routerLink="/profile" class="btn btn-info" data-bs-dismiss="modal">
+            Profile
+          </a>
+        </form>
+        <div
+          class="w-100 text-danger my-3 text-center"
+          *ngIf="errorMessage"
+        >
+          <p>{{ errorMessage }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

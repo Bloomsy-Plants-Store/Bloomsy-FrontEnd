@@ -1,0 +1,43 @@
+.review {
+    margin-bottom: 70px;
+}
+  
+  .review-body {
+    color: #313232;
+    font-family: "Libre Baskerville", Sans-serif;
+    font-size: 30px;
+    font-style: italic;
+  }
+  
+  .review-content{
+    opacity: 0;
+  }
+  
+  .custom-stars-icons i {
+    font-size: 12px;
+    padding-right: 5px;
+  }
+  
+  .review-content.active {
+    animation: content-animation 2s ease forwards;
+    animation-delay: 0s;
+  }
+  
+  .review-name {
+    font-family: "Poppins", Sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+  }
+  
+  @keyframes content-animation {
+    0% {
+      transform: scale(0.25);
+      opacity: 0;
+    }
+  
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  

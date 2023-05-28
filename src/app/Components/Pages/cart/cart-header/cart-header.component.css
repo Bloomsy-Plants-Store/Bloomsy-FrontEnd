@@ -1,0 +1,68 @@
+.aboutUs-header {
+  margin: 0 0 4vw;
+  height: 24vw;
+  font-size: 2.5vw;
+  padding-top: 12vw;
+  padding-bottom: 5vw;
+  background-position: 50%;
+}
+
+.aboutUs-header h1 {
+  font-size: 3vw;
+}
+
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .aboutUs-header {
+      font-size: 3vw;
+      padding-top: 10vw;
+      padding-bottom: 4vw;
+  }
+
+  .aboutUs-header h1 {
+      font-size: 3vw;
+  }
+
+}
+
+@media (max-width: 992px) {
+  .aboutUs-header {
+      font-size: 4vw;
+      padding-top: 14vw;
+      padding-bottom: 3vw;
+      height: 27vw;
+  }
+
+  .aboutUs-header h1 {
+      font-size: 3vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .aboutUs-header {
+      font-size: 5vw;
+      padding-top: 17vw;
+      padding-bottom: 2vw;
+      height: 30vw;
+  }
+
+  .aboutUs-header h1 {
+      font-size: 3vw;
+  }
+
+}
+
+@media (max-width: 576px) {
+  .aboutUs-header {
+      font-size: 5vw;
+      padding-top: 25vw;
+      padding-bottom: 2vw;
+      height: 38vw;
+  }
+
+  .aboutUs-header h1 {
+      font-size: 3vw;
+  }
+
+}

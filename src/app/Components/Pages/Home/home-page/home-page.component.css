@@ -1,0 +1,20 @@
+.header-wrapper {
+  position: relative;
+}
+app-banners {
+  position: absolute;
+  bottom: -150px;
+  left: 0;
+  right: 0;
+}
+
+@media screen and (max-width: 767px) {
+  app-banners {
+    position: relative;
+    top: 0px;
+    right: 0;
+  }
+}
+
+
+

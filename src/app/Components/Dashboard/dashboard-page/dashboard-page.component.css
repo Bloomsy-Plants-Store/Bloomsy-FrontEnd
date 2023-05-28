@@ -1,0 +1,145 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+:host {
+  --body-color: #eef2ff;
+  --sidebar-color: #fff;
+  --primary-color: #628665;
+  --shadow-color: rgba(98, 134, 101, 0.8);
+  --primary-color-light: #f6f5ff;
+  --toggle-color: #ddd;
+  --text-color: #707070;
+}
+
+.body {
+  min-height: 100vh;
+  background-color: var(--body-color);
+  transition: all 0.3s ease;
+}
+
+::selection {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.container {
+  display: flex;
+}
+
+@media (max-width: 500px) {
+  .menu__btn > span::before {
+    content: "";
+    top: 16px;
+  }
+  .menu__btn > span::after {
+    content: "";
+    top: 8px;
+  }
+}
+
+#menu__toggle {
+  opacity: 0;
+}
+
+@media (min-width: 501px) {
+  .home {
+    position: absolute;
+    top: 0;
+    top: 0;
+    left: 250px;
+    height: 100vh;
+    width: calc(100% - 250px);
+    background-color: var(--body-color);
+    transition: var(--tran-05);
+  }
+}
+.home .text {
+  font-size: 30px;
+  font-weight: 400;
+  color: var(--text-color);
+  padding: 12px 60px;
+}
+
+@media (min-width: 501px) {
+  .sidebar.close ~ .home {
+    left: 78px;
+    height: 100vh;
+    width: calc(100% - 78px);
+  }
+}
+@media (max-width: 500px) {
+  .container {
+    flex-direction: column;
+  }
+  .container .home {
+    position: relative;
+  }
+  .container .sidebar {
+    padding: 0;
+    height: 0;
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+  }
+  .container .sidebar i.toggle {
+    display: none;
+  }
+
+  #menu__toggle:checked + .menu__btn > span {
+    transform: rotate(45deg);
+    background-color: var(--primary-color);
+  }
+  #menu__toggle:checked + .menu__btn > span::before {
+    top: 0;
+    transform: rotate(0deg);
+    background-color: var(--primary-color);
+  }
+  #menu__toggle:checked + .menu__btn > span::after {
+    top: 0;
+    transform: rotate(90deg);
+    background-color: var(--primary-color);
+  }
+  #menu__toggle:checked ~ .sidebar {
+    padding: 40px 24px 10px;
+    height: 100%;
+    overflow: inherit;
+  }
+
+  .menu__btn {
+    position: relative;
+    top: 8px;
+    left: 20px;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    z-index: 101;
+  }
+  .menu__btn > span {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition-duration: 0.25s;
+  }
+  .menu__btn > span::before {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition-duration: 0.25s;
+  }
+  .menu__btn > span::after {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition-duration: 0.25s;
+  }
+}

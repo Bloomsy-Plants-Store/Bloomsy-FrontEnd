@@ -1,0 +1,25 @@
+.contact-us-banner {
+  background-image: url(https://wpbingosite.com/wordpress/flacio/wp-content/uploads/2021/12/bg-breadcrumb.jpg);
+  background-position: 50%;
+  height: 35vh;
+  text-align: center;
+  position: relative;
+}
+.contact-title span {
+  display: inline-block;
+  min-width: 8px;
+  transition: 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  /* animation: textanimation 1s infinite; */
+}
+@keyframes textanimation {
+  0%{
+    transform: translateY(10px);
+  }
+  50%{
+    transform: translateY(-10px);
+  }
+  100%{
+    transform: translateY(0px);
+  }
+
+}

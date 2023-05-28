@@ -1,0 +1,57 @@
+.gallery{
+    margin-bottom: 70px;
+}
+
+.img-container-2{
+    margin-top: 9vw;
+}
+
+.img-container-1{
+   padding-left: 0;
+}
+
+.img-container-3{
+    padding-right: 0;
+}
+
+.gallery img{
+    height: auto;
+    max-width: 100%;
+    border: none;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.gallery img:hover {
+    animation: slide 0.4s linear ;
+    -webkit-animation: slide 0.4s linear ;
+  }
+  
+  @keyframes slide {
+    0% {
+      transform: translatey(0);
+    }
+    25% {
+      transform: translatey(-10px);
+    }
+    50% {
+      transform: translatey(0);
+    }
+    75% {
+      transform: translatey(10px);
+    }
+    100% {
+      transform: translatey(0);
+    }
+  }
+
+
+@media (max-width: 575px) {
+    .img-container-2{
+        margin-top: 2vw;
+        margin-bottom: 2vw;
+    }
+}

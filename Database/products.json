@@ -1,0 +1,68 @@
+[
+    {
+      "name": "Jade Succulent",
+      "price": 150,
+      "imageUrl": ["https://wpbingosite.com/wordpress/flacio/wp-content/uploads/2020/12/4-1.jpg",
+                   "https://wpbingosite.com/wordpress/flacio/wp-content/uploads/2020/12/5-1.jpg",
+                   "https://wpbingosite.com/wordpress/flacio/wp-content/uploads/2020/12/6-1.jpg"
+                  ],
+      "catagory": "",
+      "rate": 5,
+      "review": 1,
+      "discount": 33,
+      "favorite": false,
+      "bestSelling": true,
+      "description": "",
+      "itemsinStock": 5
+    },
+    {
+      "name": "Aurora",
+      "price": 1200,
+      "imageUrl": ["https://wpbingosite.com/wordpress/flacio/wp-content/uploads/2020/12/11-3.jpg",
+                   "https://wpbingosite.com/wordpress/flacio/wp-content/uploads/2020/12/11-4.jpg",
+                   "https://wpbingosite.com/wordpress/flacio/wp-content/uploads/2020/12/11-5.jpg",
+                   "https://wpbingosite.com/wordpress/flacio/wp-content/uploads/2020/12/11-6.jpg"
+                  ],
+      "catagory": "",
+      "rate": 5,
+      "review": 1,
+      "discount": 0,
+      "favorite": false,
+      "bestSelling": true,
+      "description": "",
+      "itemsinStock": 5
+    },
+    {
+      "name": "Echeveria Succulent",
+      "price": 100,
+      "imageUrl": ["https://wpbingosite.com/wordpress/flacio/wp-content/uploads/2020/04/13-2.jpg",
+                   "https://wpbingosite.com/wordpress/flacio/wp-content/uploads/2020/04/13-3.jpg",
+                   "https://wpbingosite.com/wordpress/flacio/wp-content/uploads/2020/04/13-4.jpg",
+                   "https://wpbingosite.com/wordpress/flacio/wp-content/uploads/2020/04/13-5.jpg"
+                  ],
+      "catagory": "",
+      "rate": 5,
+      "review": 1,
+      "discount": 0,
+      "favorite": false,
+      "bestSelling": false,
+      "description": "",
+      "itemsinStock": 5
+    },
+    {
+      "name": "Devil’s Ivy",
+      "price": 140,
+      "imageUrl": ["https://wpbingosite.com/wordpress/flacio/wp-content/uploads/2018/05/9.jpg",
+                   "https://wpbingosite.com/wordpress/flacio/wp-content/uploads/2018/05/7.jpg",
+                   "https://wpbingosite.com/wordpress/flacio/wp-content/uploads/2018/05/8.jpg"
+                  ],
+      "catagory": "",
+      "rate": 5,
+      "review": 1,
+      "discount": 0,
+      "favorite": false,
+      "bestSelling": true,
+      "description": "",
+      "itemsinStock": 5
+    }
+]

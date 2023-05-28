@@ -1,0 +1,149 @@
+/* --- sample Products Filter ---- */
+.filter-homepage .filter-heading {
+  vertical-align: top;
+  overflow: hidden;
+}
+.filter-orderby a{
+  text-decoration: none;
+  font-size: xx-large;
+  font-style: italic;
+  color: #828787;
+}
+.filter-orderby a:hover{
+  color:black;
+}
+.active{
+  color:black !important;
+}
+
+.filled-fav{
+  color: black;
+}
+.Wishlist:hover .filled-fav{
+  color: white;
+}
+
+/* --- Sample Products ---- */
+.image-container{
+  position: relative;
+  display: inline-block;
+}
+.discount, .hot{
+  position: absolute;
+  top: 12px;
+  z-index: 100;
+}
+.hot{
+  right:12px;
+}
+.discount{
+  left:12px;
+}
+
+.overlay{
+  position: absolute;
+  transition: all 0.1s ease;
+  bottom: 0px;
+  top:0px;
+  right: 0px;
+  left: 0px;
+  background-size: cover;
+  opacity: 0;
+}
+.overlay button{
+  margin-bottom: 8%;
+  border:none;
+  background-color: white;
+  width: 45px;
+  height: 45px;
+  border-radius:50%;
+  transition: all 0.1s ease;
+}
+.overlay button:hover{
+  background-color:#224229;
+  color:#fff;
+}
+.image-container:hover .overlay{
+  cursor: pointer;
+  opacity: 1;
+}
+.image-container:hover .overlay button:nth-child(odd){
+  animation: overlay-animation-odd 0.6s;
+}
+.image-container:hover .overlay button:nth-child(even){
+  animation: overlay-animation-even 0.6s;
+}
+.filter{
+  cursor: pointer;
+}
+.filter .active{
+  color: black !important;
+}
+@keyframes overlay-animation-odd {
+  0%{
+    transform: translateY(0px);
+  }
+  25%{
+    transform: translateY(20px);
+  }
+  50%{
+    transform: translateY(20px);
+  }
+  75%{
+    transform: translateY(-20px);
+  }
+  100%{
+    transform: translateY(-20px);
+  }
+
+}
+@keyframes overlay-animation-even {
+  0%{
+    transform: translateY(0px);
+  }
+  25%{
+    transform: translateY(-20px);
+  }
+  50%{
+    transform: translateY(-20px);
+  }
+  75%{
+    transform: translateY(20px);
+  }
+  100%{
+    transform: translateY(20px);
+  }
+
+}
+.title-price-section{
+  color:#828787;
+  font-size: large;
+}
+
+/*----View More Button----*/
+.view-more-btn-container:hover{
+  animation: view-more-animation 0.6s ease-in-out;
+}
+@keyframes view-more-animation {
+  0%{
+    transform:translateX(-20px)
+  }
+  100%{
+      transform:translateX(0px)
+  }
+}
+.view-more-btn a{
+  color:#224229;
+}
+.view-btn{
+  z-index: 100;
+  margin-left:-12px;
+}
+
+.pagniation-p{
+  color: #828787;
+text-transform: none;
+font-weight: 400;
+font-family: Poppins,sans-serif;
+
+}

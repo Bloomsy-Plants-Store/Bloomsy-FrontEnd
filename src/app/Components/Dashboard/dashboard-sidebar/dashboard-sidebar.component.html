@@ -1,0 +1,53 @@
+<div class="body">
+  <nav class="sidebar bg-light" [style.background]="'url(./assets/images/sidebar-bg.webp) no-repeat bottom right'">
+    <header>
+      <div class="image-text">
+        <span class="image">
+          <img src="./assets/images/logo-transparent.png" alt="logo">
+        </span>
+      </div>
+
+      <i class='fas fa-angle-right toggle'></i>
+    </header>
+
+    <div class="menu-bar">
+      <div class="menu">
+        <ul class="menu-links">
+          <li class="nav-link">
+            <a routerLink="/dashboard">
+              <i class='fas fa-home icon'></i>
+              <span class="text nav-text">Dashboard</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a routerLink="all-products">
+              <i class='fas fa-tree icon'></i>
+              <span class="text nav-text">Products</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a routerLink="revenue">
+              <i class='fas fa-bar-chart icon'></i>
+              <span class="text nav-text">Revenue</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+      <div class="bottom-content">
+        <li class="">
+          <a routerLink="/">
+            <i class='fas fa-sign-out icon'></i>
+            <span class="text nav-text">Back To Home</span>
+          </a>
+        </li>
+
+      </div>
+    </div>
+
+  </nav>
+</div>
+

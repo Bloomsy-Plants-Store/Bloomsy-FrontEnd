@@ -1,0 +1,163 @@
+.aboutUs-header {
+    margin: 0 0 4vw;
+    height: 24vw;
+    font-size: 2.5vw;
+    padding-top: 12vw;
+    padding-bottom: 5vw;
+    background-position: 50%;
+}
+
+.aboutUs-header h1 {
+    font-size: 3vw;
+}
+
+.after-header-container {
+    height: 55vw;
+    margin-bottom: 5vw;
+}
+
+.after-header {
+    background-image: url(https://wpbingosite.com/wordpress/flacio/wp-content/uploads/2021/12/about-1.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-left: 3vw;
+    margin-right: 3vw;
+    height: 50vw;
+}
+
+.after-header img {
+    height: auto;
+    max-width: 100%;
+     transform: translateX(-50%);
+    left: 50%;
+}
+
+.after-header img:hover {
+    animation: slide 0.4s linear ;
+    -webkit-animation: slide 0.4s linear ;
+  }
+  
+  @keyframes slide {
+    0% {
+      transform: translateX(-50%);
+    }
+    25% {
+      transform: translateX(-55%);
+    }
+    50% {
+      transform: translateX(-50%);
+    }
+    75% {
+      transform: translateX(-55%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .aboutUs-header {
+        font-size: 3vw;
+        padding-top: 10vw;
+        padding-bottom: 4vw;
+    }
+
+    .aboutUs-header h1 {
+        font-size: 3vw;
+    }
+
+    .after-header-container {
+        height: 67vw;
+        margin-bottom: 6vw;
+    }
+
+    .after-header {
+        margin-left: 3vw;
+        margin-right: 3vw;
+        height: 60vw;
+    }
+}
+
+@media (max-width: 992px) {
+    .aboutUs-header {
+        font-size: 4vw;
+        padding-top: 14vw;
+        padding-bottom: 3vw;
+        height: 27vw;
+    }
+
+    .aboutUs-header h1 {
+        font-size: 3vw;
+    }
+
+    .after-header-container {
+        height: 77vw;
+        margin-bottom: 5vw;
+    }
+
+    .after-header {
+        margin-left: 3vw;
+        margin-right: 3vw;
+        height: 70vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .aboutUs-header {
+        font-size: 5vw;
+        padding-top: 17vw;
+        padding-bottom: 2vw;
+        height: 30vw;
+    }
+
+    .aboutUs-header h1 {
+        font-size: 3vw;
+    }
+
+    .after-header-container {
+        height: 88vw;
+        margin-bottom: 5vw;
+    }
+
+    .after-header {
+        margin-left: 3vw;
+        margin-right: 3vw;
+        height: 80vw;
+    }
+
+    .after-header img {
+        height: auto;
+        max-width: 57%;
+    }
+}
+
+@media (max-width: 576px) {
+    .aboutUs-header {
+        font-size: 5vw;
+        padding-top: 25vw;
+        padding-bottom: 2vw;
+        height: 38vw;
+    }
+
+    .aboutUs-header h1 {
+        font-size: 3vw;
+    }
+
+    .after-header-container {
+        height: 88vw;
+        margin-bottom: 5vw;
+    }
+
+    .after-header {
+        margin-left: 3vw;
+        margin-right: 3vw;
+        height: 80vw;
+    }
+
+    .after-header img {
+        height: auto;
+        max-width: 57%;
+    }
+}

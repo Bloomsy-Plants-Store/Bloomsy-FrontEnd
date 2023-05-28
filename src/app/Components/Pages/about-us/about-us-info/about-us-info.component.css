@@ -1,0 +1,103 @@
+.info-container{
+    background-color: #F9F6EF;
+    padding: 80px 1vw 10vw 1vw;
+    margin-bottom: 100px;
+    
+}
+.shape-container{
+    margin-top: 80px;
+}
+.info-container .title{
+    font-size: 34px;
+    color: #313232;
+}
+
+.info-container svg{
+ width: 6vw;  
+ height: 6vw;
+ color: #224229;
+ fill: #224229;
+}
+
+.second{
+    width:12vw
+}
+
+.sub-tit{
+    font-size: 20px;
+}
+
+.info-container svg:hover {
+    animation: slide 0.4s linear ;
+    -webkit-animation: slide 0.4s linear ;
+  }
+  
+  @keyframes slide {
+    0% {
+      transform: translatex(0);
+    }
+    25% {
+      transform: translatex(-10px);
+    }
+    50% {
+      transform: translatex(0);
+    }
+    75% {
+      transform: translatex(10px);
+    }
+    100% {
+      transform: translatex(0);
+    }
+  }
+
+/* Responsive Styles */
+@media (max-width: 991px) {
+    .info-container{
+        padding-left: 7vw;
+        padding-right: 7vw;
+        padding-bottom: 80px;
+    }
+    .info-container svg{
+        width: 12vw;  
+        height: 12vw;
+     }
+     .info-container .title{
+        font-size: 30px;
+    }
+    .arrow img{
+        display: none !important;
+    }
+    .shape{
+        margin-top: 7vw;
+    }
+    .sub-tit{
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 576px) {
+    .info-container{
+        padding-left: 7vw;
+        padding-right: 7vw;
+        padding-bottom: 80px;
+    } 
+    .info-container svg{
+        width: 15vw;  
+        height: 15vw;
+     }
+    .arrow img{
+        display: none !important;
+    }
+    .shape,.shapex{
+        margin-top: 15vw;
+    }
+    .sub-tit{
+        font-size: 17px;
+    }
+    .shape-container{
+        margin-top: 6px;
+    }
+    .info-container .title{
+        font-size: 25px;
+    }
+}

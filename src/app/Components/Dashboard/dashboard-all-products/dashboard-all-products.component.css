@@ -1,0 +1,217 @@
+.section{
+  height: 100vh;
+}
+
+.fil0 {
+  fill: #3c5742bc
+}
+
+.add-new-product-btn{
+  margin-top: 20px;
+  position: relative;
+  padding: 10px 40px;
+  background: var(--primary-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #e4e1e1;
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, .2));
+}
+
+.add-new-product-btn:hover {
+  border: 1px solid #537355;
+  background: linear-gradient(85deg, #537355, #537355fb, #537355e9, #537355d7, #365438bc);
+  animation: wind 2s ease-in-out infinite;
+}
+
+@keyframes wind {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  0% {
+    background-position: 50% 100%;
+  }
+
+  0% {
+    background-position: 0% 50%;
+  }
+}
+
+.icon-1 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 25px;
+  transform-origin: 0 0;
+  transform: rotate(10deg);
+  transition: all .5s ease-in-out;
+  filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, .3));
+}
+
+.add-new-product-btn:hover .icon-1 {
+  animation: slay-1 3s cubic-bezier(0.52, 0, 0.58, 1) infinite;
+  transform: rotate(10deg);
+}
+
+@keyframes slay-1 {
+  0% {
+    transform: rotate(10deg);
+  }
+
+  50% {
+    transform: rotate(-5deg);
+  }
+
+  100% {
+    transform: rotate(10deg);
+  }
+}
+
+.icon-2 {
+  position: absolute;
+  top: 0;
+  left: 25px;
+  width: 12px;
+  transform-origin: 50% 0;
+  transform: rotate(10deg);
+  transition: all 1s ease-in-out;
+  filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, .5));
+}
+
+.add-new-product-btn:hover .icon-2 {
+  animation: slay-2 3s cubic-bezier(0.52, 0, 0.58, 1) 1s infinite;
+  transform: rotate(0);
+}
+
+@keyframes slay-2 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(15deg);
+  }
+
+  100% {
+    transform: rotate(0);
+  }
+}
+
+.icon-3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 18px;
+  transform-origin: 50% 0;
+  transform: rotate(-5deg);
+  transition: all 1s ease-in-out;
+  filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, .5));
+}
+
+.add-new-product-btn:hover .icon-3 {
+  animation: slay-3 2s cubic-bezier(0.52, 0, 0.58, 1) 1s infinite;
+  transform: rotate(0);
+}
+
+@keyframes slay-3 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(-5deg);
+  }
+
+  100% {
+    transform: rotate(0);
+  }
+}
+
+
+
+/* Modal */
+
+.custom-modal {
+  animation: bounceIn 0.5s;
+}
+
+.modal-title{
+  font-family: 'Dancing Script', cursive;
+  color:#537355;
+}
+
+.modal-confirm {
+  color: #636363;
+  font-size: 14px;
+}
+
+.modal-confirm .modal-content {
+  border-radius: 5px;
+  border: none;
+}
+
+.modal-confirm{
+  border-bottom: none;
+  position: relative;
+}
+
+.modal-confirm .form-control,
+.modal-confirm .btn {
+  min-height: 40px;
+  border-radius: 3px;
+}
+
+.modal-confirm .close {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+}
+
+.modal-confirm .modal-footer{
+  border: none;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 13px;
+}
+
+.modal-confirm.modal-dialog {
+  margin-top: 80px;
+}
+
+.modal-confirm .submit-btn {
+  color: #fff;
+  border-radius: 4px;
+  background: #86b68a;
+  text-decoration: none;
+  transition: all 0.4s;
+  line-height: normal;
+  border: none;
+}
+
+.modal-confirm .submit-btn:hover,
+.modal-confirm .submit-btn:focus {
+  background: #6b8f6e;
+  outline: none;
+}
+
+/* Modal Form */
+input {
+  width: auto;
+  border-radius: 7px;
+  outline: none;
+  border: 1px solid #e5e5e5;
+  filter: drop-shadow(0px 1px 0px #efefef)
+    drop-shadow(0px 1px 0.5px rgba(239, 239, 239, 0.5));
+  transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+}
+input:focus{
+  outline: none;
+}
+.selectpicker{
+  height: 8vh;
+}
+

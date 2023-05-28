@@ -1,0 +1,36 @@
+<section class="mt-0">
+  <div class="header p-0">
+    <div class="container">
+      <div class="content-title-heading">
+        <h1 class="">{{ HeaderName }}</h1>
+      </div>
+      <div class="subcategorie-content w-75 mx-auto mt-4">
+        <div class="carousel-inner">
+          <ul class="subcategories" data-nav="true" data-columns4="2" data-columns3="2" data-columns2="3"
+            data-columns1="3" data-columns="4">
+            <owl-carousel-o [options]="customOptions">
+              <ng-container *ngFor="let category of categories">
+                <ng-template carouselSlide [id]="category.id">
+                  <div class="inner-container">
+                    <li data-id_category="381" class="product-category py-3" style="width: 250px;" tabindex="-1"
+                      data-slick-index="-2"  aria-hidden="true" (click)="handleContainerClick($event,category.name)">
+                        <a tabindex="-1" [id]="'img-active-' + removeSpaces(category.name)" class="img-container">
+                          <img src="{{ category.img_src }}" alt="{{ category.name }}" data-ll-status="loaded"
+                            class="category-img" width="178" height="178">
+                        </a>
+                        <div class="category">
+                          <h2 class="category-title" >
+                            <a tabindex="-1" [id]="'title-active-' + removeSpaces(category.name)">{{ category.name }}</a>
+                          </h2>
+                      </div>
+                    </li>
+                  </div>
+                </ng-template>
+              </ng-container>
+            </owl-carousel-o>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

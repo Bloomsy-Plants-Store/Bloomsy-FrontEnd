@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&display=swap');
+
+.header-sample-section {
+  background-color:transparent;
+  padding-bottom: 25px;
+}
+
+.banner-wrapper{
+  height: 100%;
+  position: relative;
+}
+
+.banner-wrapper-infor {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  padding: 20px;
+  font-size: 20px;
+  color: #313232;
+  font-family: 'Libre Baskerville', serif;
+}
+
+.middle-banner{
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 20px;
+  font-size: 20px;
+  color: #313232;
+  font-family: 'Libre Baskerville', serif;
+  text-align: center;
+}
+
+.title-banner {
+  white-space: nowrap;
+}
+
+
+.title-banner span{
+  font-style: italic;
+}
+
+.bwp-image:hover {
+  animation: bounce 1s;
+}
+
+
+.banner-wrapper-infor a, .middle-banner a {
+  position: relative;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 400;
+  color: #313232;
+}
+
+.banner-wrapper-infor a.button::before{
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background-color: #313232;
+  transition: transform 0.3s ease-out;
+  transform-origin: left center;
+}
+
+.banner-wrapper-infor a.button:hover::before{
+  transform: scaleX(0.5);
+}
+
+
+
+.middle-banner a.button::before{
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 1.5px;
+  background-color: #313232;
+  transition: transform 0.3s ease-out;
+  -webkit-transition: transform 0.3s ease-out;
+  -moz-transition: transform 0.3s ease-out;
+  -ms-transition: transform 0.3s ease-out;
+  -o-transition: transform 0.3s ease-out;
+}
+
+.middle-banner a.button:hover::before{
+  transform: translateX(-50%) scaleX(0.5);
+}
+
+
+
+@keyframes bounce {
+  0% {
+    transform: translateX(0);
+  }
+  15% {
+    transform: translateX(-9px);
+  }
+  30% {
+    transform: translateX(0);
+  }
+  45% {
+    transform: translateX(-6px);
+  }
+  60% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(-3px);
+  }
+  100%{
+    transform: translateX(0);
+  }
+}
+
+.banner-wrapper .bwp-image img {
+  height: 300px;
+  top: 100px;
+  z-index: 1000000;
+}
+
+@media only screen and (max-width: 1000px) {
+
+  .header-sample-section {
+    background-color:transparent;
+    padding-bottom: 45px;
+  }
+
+  .banner-wrapper-infor {
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    padding: 20px;
+    font-size: 15px;
+    color: #313232;
+    font-family: serif;
+  }
+
+  .middle-banner{
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px;
+    font-size: 15px;
+    color: #313232;
+    font-family: serif;
+    text-align: center;
+  }
+
+  .banner-wrapper-infor a{
+    font-size: 15px;
+    font-weight: 400;
+    color: #313232;
+  }
+  .banner-wrapper .bwp-image img {
+    height: 200px;
+  }
+}
+
+@media only screen and (min-width:1001px) and  (max-width: 1200px) {
+
+  .header-sample-section {
+    background-color:transparent;
+    padding-bottom: 45px;
+  }
+
+  .banner-wrapper-infor {
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    padding: 20px;
+    font-size: 15px;
+    color: #313232;
+    font-family: 'Libre Baskerville', serif;
+  }
+
+  .middle-banner{
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px;
+    font-size: 15px;
+    color: #313232;
+    font-family: 'Libre Baskerville', serif;
+    text-align: center;
+  }
+
+  .banner-wrapper-infor a{
+    font-size: 12px;
+    font-weight: 400;
+    color: #313232;
+  }
+  .banner-wrapper .bwp-image img {
+    height: 200px;
+  }
+}
+
+
+
+
+@media  screen and (max-width:767.5px) {
+
+  .banner-wrapper .bwp-image img {
+    height: 350px;
+  }
+  .header-sample-section {
+    width: 100%;
+    background-color: #f9f4ef;
+    padding-top: 50px;
+  }
+}

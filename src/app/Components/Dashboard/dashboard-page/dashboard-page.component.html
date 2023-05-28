@@ -1,0 +1,25 @@
+<div class="container">
+  <input id="menu__toggle" type="checkbox" />
+  <label class="menu__btn" for="menu__toggle">
+    <span></span>
+  </label>
+
+  <app-dashboard-sidebar></app-dashboard-sidebar>
+  
+  <section class="home bg-light">
+    <router-outlet></router-outlet>
+  </section>
+</div>
+
+<!-- Spinner -->
+<ngx-spinner>
+  <div class="loader-container">
+    <div class="loader">
+      <div class="orbe" style="--index: 0"></div>
+      <div class="orbe" style="--index: 1"></div>
+      <div class="orbe" style="--index: 2"></div>
+      <div class="orbe" style="--index: 3"></div>
+      <div class="orbe" style="--index: 4"></div>
+    </div>
+  </div>
+</ngx-spinner>

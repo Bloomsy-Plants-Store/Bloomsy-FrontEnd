@@ -1,0 +1,57 @@
+.description{
+  font-family: "Poppins", Sans-serif;
+  font-weight: 400;
+  font-size: 2.5vh;
+
+}
+
+.subDescription{
+  color:rgb(169, 169, 169);
+  font-weight: 300;
+  font-size: 2vh;
+}
+
+.bi{
+  color:rgb(169, 169, 169);
+  font-size: 5.5vh;
+  margin-top: -5.7px;
+}
+
+
+/* Define the style of the icon when it is hovered over */
+i:hover {
+  animation: slide 0.4s linear ;
+  -webkit-animation: slide 0.4s linear ;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 762px) {
+  .support{
+    flex-direction: column;
+    text-align: center!important;
+    align-items: center!important;
+    align-content: center!important;
+    gap:0 !important;
+  }
+  .red-title{
+    text-align: center!important;
+    align-items: center!important;
+  }
+}

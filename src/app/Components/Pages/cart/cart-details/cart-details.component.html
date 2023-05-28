@@ -1,0 +1,95 @@
+<div class="cart_container row">
+  <div class="col-xl-8 col-lg-12 col-md-12 col-12">
+    <div class="dataTable_cart">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <ng-container class="product_name_img">
+            <ng-container matColumnDef="image">
+              <th mat-header-cell *matHeaderCellDef>Product</th>
+              <td mat-cell *matCellDef="let element"><img class="Product_image"
+                [src]="element.product_id.imageUrl[0]"
+                  alt="{{element.product_id.name}}" /></td>
+            </ng-container>
+
+            <ng-container matColumnDef="name" class="product_cart_name">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element">{{element.product_id.name}}</td>
+            </ng-container>
+          </ng-container>
+
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef>Price</th>
+          <td mat-cell *matCellDef="let element">{{element.product_id.price}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef>Quantity</th>
+          <td mat-cell *matCellDef="let element">
+            <button (click)="decreaseQuantity(element); updateQuantity(element)"  class="dec-btn  quantity-btn">-</button>
+            <input type="number" min="1" class="cart_input" [(ngModel)]="element.quantity">
+            <button (click)="increaseQuantity(element); updateQuantity(element)" class="inc-btn quantity-btn">+</button>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="total">
+          <th mat-header-cell *matHeaderCellDef>Total</th>
+          <td mat-cell *matCellDef="let element">{{element.product_id.price *
+            element.quantity}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef>Delete</th>
+          <td mat-cell *matCellDef="let element;">
+            <button mat-icon-button color="warn" (click)="removeCartItem(element)">
+              <mat-icon aria-label="Delete item">delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="col-xl-4 col-lg-12 col-md-12 col-12">
+    <div class="cart-collaterals">
+      <div class="cart_totals ">
+        <h2>Cart totals</h2>
+        <div cellspacing="0" class="shop_table shop_table_responsive">
+          <div class="cart-subtotal">
+            <div class="title">Subtotal</div>
+            <div data-title="Subtotal"><span class="amount"><bdi><span class="symbol">EGP </span>{{totalPriceForAllProduct()}}</bdi></span>
+            </div>
+          </div>
+          <div class="shipping-totals shipping">
+            <h2>Shipping</h2>
+            <div data-title="Shipping">
+              <ul id="shipping_method" class="shipping-methods">
+                <li>
+                  <input type="radio" name="shipping_method[0]" data-index="0" id="shipping_method_0_free_shipping1"
+                    value="free_shipping:1" class="shipping_method" checked='checked' /><label
+                    for="shipping_method_0_free_shipping1">Free shipping</label>
+                </li>
+                <li>
+                  <input type="radio" name="shipping_method[0]" data-index="0" id="shipping_method_0_flat_rate2"
+                    value="flat_rate:2" class="shipping_method" /><label for="shipping_method_0_flat_rate2">Flat
+                    rate</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="order-total">
+        <div class="title">Total</div>
+        <div data-title="Total"><strong><span class="woocommerce-Price-amount amount"><bdi><span
+                  class="woocommerce-Price-currencySymbol">EGP </span>{{totalPriceForAllProduct()}}</bdi></span></strong>
+        </div>
+      </div>
+      <div class="to-checkout">
+        <a href="" class="checkout-button button alt to-forward" (click)="checkout()" routerLink="/checkout"> Proceed to checkout</a>
+      </div>
+    </div>
+  </div>
+</div>

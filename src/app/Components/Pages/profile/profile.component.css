@@ -1,0 +1,156 @@
+
+  .mt--7 {
+    margin-top: -6rem !important;
+  }
+  
+  .pt-0 {
+    padding-top: 0 !important;
+  }
+  
+  .pr-0 {
+    padding-right: 0 !important;
+  }
+  
+  .pb-0 {
+    padding-bottom: 0 !important;
+  }
+  
+  .pt-5 {
+    padding-top: 3rem !important;
+  }
+  
+  .pt-8 {
+    padding-top: 8rem !important;
+  }
+  
+  .pb-8 {
+    padding-bottom: 8rem !important;
+  }
+  
+  .m-auto {
+    margin: auto !important;
+  }
+  
+  @media (min-width: 768px) {
+  
+    .mt-md-5 {
+      margin-top: 3rem !important;
+    }
+  
+    .pt-md-4 {
+      padding-top: 1.5rem !important;
+    }
+  
+    .pb-md-4 {
+      padding-bottom: 1.5rem !important;
+    }
+  }
+  
+  @media (min-width: 992px) {
+  
+    .pl-lg-4 {
+      padding-left: 1.5rem !important;
+    }
+  
+    .pt-lg-8 {
+      padding-top: 8rem !important;
+    }
+  
+    .ml-lg-auto {
+      margin-left: auto !important;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+  
+    .mb-xl-0 {
+      margin-bottom: 0 !important;
+    }
+  }
+  
+  .avatar {
+    font-size: 1rem;
+    display: inline-flex;
+    width: 48px;
+    height: 48px;
+    color: #fff;
+    border-radius: 50%;
+    background-color: #adb5bd;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .avatar img {
+    width: 100%;
+    border-radius: 50%;
+  }
+  
+  .avatar-sm {
+    font-size: .875rem;
+    width: 36px;
+    height: 36px;
+  }
+  
+  .card-profile-image {
+    position: relative;
+  }
+  
+  .card-profile-image img {
+    position: absolute;
+    left: 50%;
+    max-width: 180px;
+    transition: all .15s ease;
+    transform: translate(-50%, -30%);
+    border-radius: .375rem;
+  }
+  
+  .card-profile-image img:hover {
+    transform: translate(-50%, -33%);
+  }
+  
+  .card-profile-stats {
+    padding: 1rem 0;
+  }
+  
+  .card-profile-stats>div {
+    margin-right: 1rem;
+    padding: .875rem;
+    text-align: center;
+  }
+  
+  .card-profile-stats>div:last-child {
+    margin-right: 0;
+  }
+  
+  .card-profile-stats>div .heading {
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: block;
+  }
+  
+  .card-profile-stats>div .description {
+    font-size: .875rem;
+    color: #adb5bd;
+  }
+  
+  .main-content {
+    position: relative;
+  }
+  
+  .main-content {
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    background-color: transparent;
+  }
+  
+  @media (min-width: 768px) {
+    .main-content .container-fluid {
+      padding-right: 39px !important;
+      padding-left: 39px !important;
+    }
+  }
+  

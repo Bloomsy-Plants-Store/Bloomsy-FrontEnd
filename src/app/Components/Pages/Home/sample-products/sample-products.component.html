@@ -1,0 +1,110 @@
+<div class="filter-homepage container-fluid px-5 my-5">
+  <!--Sample Products Filter-->
+  <div class="filter-heading d-flex justify-content-center my-5 w-100">
+    <div class="filter-order-by">
+      <div class="filter-orderby">
+        <a  class="px-3 filter" [ngClass]="{ 'active': activeFilter === 'top-rate' }" (click)="filterProductsByTopRating('top-rate')"
+          >Top <span>Rating</span></a
+        >
+        <a routerLink="" class="fw-lighter px-3">/</a>
+        <a
+          [ngClass]="{ 'active': activeFilter === 'best-sell' }"
+          class="px-3 filter"
+          (click)="filterProductsByBestSelling('best-sell')"
+          >Best <span>Selling</span></a
+        >
+      </div>
+    </div>
+  </div>
+  <!--Sample Products-->
+  <div class="sample-products d-flex justify-content-center my-5">
+    <div class="row col-12 d-flex justify-content-evenly">
+      <div
+        class="col-10 col-md-4 col-lg-3 border-white mb-3"
+        *ngFor="let product of Products"
+      >
+        <!--Image Section-->
+        <div class="image-container">
+          <img
+            class="col-12"
+            src="{{ product.imageUrl[0] }}"
+            alt="{{ product.name }}.jpg"
+            height="400"
+          />
+          <div class="voucher w-100 px-3">
+            <div
+              class="discount bg-danger text-white w-auto px-2"
+              *ngIf="product.discount != 0"
+            >
+              -{{ product.discount }}%
+            </div>
+            <div
+              class="hot bg-warning text-white w-auto px-2"
+              *ngIf="product.bestSelling"
+            >
+              Hot
+            </div>
+          </div>
+          <div
+            class="overlay col-12 d-flex justify-content-center align-items-end gap-3"
+            [style.backgroundImage]="'url(' + product.imageUrl[1] + ')'"
+          >
+            <button data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart" (click)="addProductToCart(product._id, product.price);">
+              <i
+                class="fi fi-rs-shopping-bag d-flex justify-content-center align-items-center"
+              ></i>
+            </button>
+            <button data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist" class="Wishlist" (click)="addOrRemoveFavourite(product?._id);">
+              <i class="bi bi-heart" *ngIf="!favoritesMap.get(product?._id)"></i>
+              <i class="bi bi-heart-fill filled-fav" *ngIf="favoritesMap.get(product?._id)"></i>
+            </button>
+
+            <button routerLink="/product/{{ product._id }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Quick Search">
+              <i
+                class="fi fi-rs-search d-flex justify-content-center align-items-center"
+              ></i>
+            </button>
+          </div>
+        </div>
+        <!--Title and Price Section-->
+        <div class="title-price-section d-flex justify-content-between my-2">
+          <span class="title-section">
+            <span>{{ product.name }}</span>
+          </span>
+
+          <span
+            class="price-section"
+            *ngIf="product.discount != 0; else nodiscount"
+          >
+            <span class="text-line-through me-2">{{
+              product.price | currency
+            }}</span>
+            <span class="text-danger">{{
+              product.price - (product.price * product.discount) / 100
+                | currency
+            }}</span>
+          </span>
+          <ng-template #nodiscount>
+            <span>{{ product.price | currency }}</span>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--View More Button-->
+  <div class="view-more-btn d-flex justify-content-center my-5">
+    <a routerLink="/products" class="px-3 text-decoration-none">
+      <div class="view-more-btn-container d-flex align-items-center">
+        <div class="circle">
+          <span><i class="fi fi-rs-circle align-middle" style="font-size: 48px;"></i></span>
+        </div>
+        <div class="view-btn">
+          <span class="bg-light py-1 rounded">View More</span>
+          <span><i class="fi fi-rs-arrow-right align-middle px-2"></i></span>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+

@@ -1,0 +1,59 @@
+<!--Products-->
+<div class="container-fulid row m-auto py-1 px-5">
+  <p class="pagniation-p mx-2 mb-3">Showing {{ ((currentPage - 1) * itemsPerPage) + 1 }}–{{ getUpperBound() }} of {{ totalItems }} item(s)</p>
+  <div class="sample-products d-flex justify-content-center my-1">
+    <div class="row col-12 d-flex justify-content-evenly">
+      <div class="col-10 col-md-4 col-lg-3 border-white mb-3"
+        *ngFor="let product of Products | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+        <!--Image Section-->
+        <div class="image-container">
+          <img class="col-12" src="{{ product.imageUrl[0] }}" alt="{{ product.name }}.jpg" height="400"/>
+          <div class="voucher w-100 px-3">
+            <div class="discount bg-danger text-white w-auto px-2" *ngIf="product.discount != 0">
+              -{{ product.discount }}%
+            </div>
+            <div class="hot bg-warning text-white w-auto px-2" *ngIf="product.bestSelling">
+              Hot
+            </div>
+          </div>
+          <div class="overlay col-12 d-flex justify-content-center align-items-end gap-3"
+            [style.backgroundImage]="'url(' + product.imageUrl[1] + ')'">
+            <button data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart" (click)="addProductToCart(product._id, product.price);">
+              <i class="fi fi-rs-shopping-bag d-flex justify-content-center align-items-center"></i>
+            </button>
+            <button data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist" class="Wishlist" (click)="addOrRemoveFavourite(product?._id);">
+              <i class="bi bi-heart" *ngIf="!favoritesMap.get(product?._id)"></i>
+              <i class="bi bi-heart-fill filled-fav" *ngIf="favoritesMap.get(product?._id)"></i>
+            </button>
+            <button routerLink="/product/{{ product._id }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Quick Search">
+              <i class="fi fi-rs-search d-flex justify-content-center align-items-center"></i>
+            </button>
+          </div>
+        </div>
+        <!--Title and Price Section-->
+        <div class="title-price-section d-flex justify-content-between my-2">
+          <span class="title-section">
+            <span>{{ product.name }}</span>
+          </span>
+
+          <span class="price-section" *ngIf="product.discount != 0; else nodiscount">
+            <span class="text-line-through me-2">{{
+              product.price | currency
+              }}</span>
+            <span class="text-danger">{{
+              product.price - (product.price * product.discount) / 100
+              | currency
+              }}</span>
+          </span>
+          <ng-template #nodiscount>
+            <span>{{ product.price | currency }}</span>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mt-4 text-center mx-auto">
+    <pagination-controls (pageChange)="currentPage= $event"></pagination-controls>
+
+  </div>
+</div>

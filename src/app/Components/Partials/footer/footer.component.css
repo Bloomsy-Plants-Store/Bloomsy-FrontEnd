@@ -1,0 +1,116 @@
+footer {
+  background-color: #224229;
+}
+
+footer .header {
+  color: #ffffff;
+  font-family: "Poppins", Sans-serif;
+  font-size: 2.4vh;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.item {
+  font-size: 2vh;
+}
+
+/*--------- Social Link -----------*/
+#social-link li {
+  margin: 0 10px;
+  margin-left: 10px;
+  display: inline-block;
+  text-align: center;
+}
+
+#social-link li a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  border: 1px solid #ffffff;
+  border-top-color: rgb(255, 255, 255);
+  border-right-color: rgb(255, 255, 255);
+  border-bottom-color: rgb(255, 255, 255);
+  border-left-color: rgb(255, 255, 255);
+}
+
+/*----------- Email Input ------------*/
+
+.form-control {
+  position: relative;
+  padding: 0;
+}
+
+.form-control input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px #fff solid;
+  display: block;
+  width: 100%;
+  padding: 20px 0;
+  font-size: 14px;
+  color: #fff;
+}
+.form-control input:focus,
+.form-control input:valid {
+  outline: 0;
+  border-bottom-color: #ffffff;
+}
+.form-control label {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  pointer-events: none;
+}
+.form-control label span,
+.envelope {
+  display: inline-block;
+  font-size: 18px;
+  min-width: 5px;
+  color: #fff;
+  opacity: 0.6;
+  transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.form-control input:focus + label span,
+.form-control input:valid + label span {
+  color: #ffffff;
+  transform: translateY(-30px);
+}
+
+.email-icon {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-30%);
+  cursor: pointer;
+}
+
+.success_border{
+  border: 2px solid #65ca6d !important
+
+}
+.success_msg{
+  color: #fff;
+  opacity: 0.6;
+}
+
+/***********payment Logo section***********/
+.logo-imgs {
+  width: auto !important;
+  margin-left: 0;
+  margin-right: 0;
+}
+/*********copy rights section********/
+.copy-right {
+  border-style: solid;
+  border-width: 1px 0px 0px 0px;
+  border-color: #3c5742;
+  padding: 15px;
+}

@@ -1,0 +1,474 @@
+<!-- Alert Messages -->
+<div
+  class="w-100 alert alert-danger my-3 text-start pl-2"
+  *ngIf="uploadErrorMessage"
+>
+  <div>{{ uploadErrorMessage }}</div>
+</div>
+
+<div
+  class="w-100 alert alert-success my-3 text-start pl-2"
+  *ngIf="uploadSuccessMessage"
+>
+  <div>{{ uploadSuccessMessage }}</div>
+</div>
+
+<div class="w-100 alert alert-danger my-3 text-start pl-2" *ngIf="errorMessage">
+  <div>{{ errorMessage }}</div>
+</div>
+<div
+  class="w-100 alert alert-success my-3 text-start pl-2"
+  *ngIf="successMessage"
+>
+  <div>{{ successMessage }}</div>
+</div>
+
+<!-- All Products Table -->
+<div class="container-fluid p-0 table-container">
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="w-100">
+      <!-- Position Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+        <td mat-cell *matCellDef="let element">{{ element.price }}</td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
+        <td mat-cell *matCellDef="let element">{{ element.category }}</td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="rate" class="tr">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Rate</th>
+        <td mat-cell *matCellDef="let element">{{ element.rate }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="discount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Discount</th>
+        <td mat-cell *matCellDef="let element">{{ element.discount }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="itemsinStock">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Items in Stock</th>
+        <td mat-cell *matCellDef="let element">{{ element.itemsinStock }}</td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="action" class="action-container">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            class="copy"
+            (click)="setSelectedId(element._id)"
+            data-bs-toggle="modal"
+            data-bs-target="#DeleteModal"
+          >
+            <i class="bi bi-trash"></i>
+          </button>
+          <button
+            class="copy"
+            data-bs-toggle="modal"
+            data-bs-target="#editModal"
+            (click)="editElement(element)"
+          >
+            <i class="bi bi-pen"></i>
+          </button>
+          <button
+            class="copy"
+            data-bs-toggle="modal"
+            data-bs-target="#showModal"
+            (click)="showElement(element)"
+          >
+            <i class="bi bi-eye"></i>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[7, 10, 15, 20]"
+      [pageSize]="7"
+      [showFirstLastButtons]="true"
+      [length]="dataSource.data.length"
+    ></mat-paginator>
+  </div>
+</div>
+
+<!--Update Product Modal-->
+<div class="modal fade" id="editModal">
+  <div
+    class="modal-dialog modal-confirm modal-dialog-centered modal-md my-auto"
+  >
+    <div
+      class="modal-content bg-white"
+      [style.background]="
+        'url(./assets/images/modal-bg.png) no-repeat top left'
+      "
+    >
+      <div class="modal-header">
+        <div class="w-100">
+          <h2 class="modal-title text-center">Update Product</h2>
+        </div>
+      </div>
+      <div class="modal-body">
+        <form
+          [formGroup]="editProductForm"
+          (ngSubmit)="updateProduct()"
+          enctype="multipart/form-data"
+        >
+          <div class="col-12 d-flex justify-content-between flex-wrap">
+            <div class="form-group my-1 col-12">
+              <input
+                type="text"
+                class="form-control w-100"
+                name="productName"
+                placeholder="Product Name"
+                formControlName="productName"
+                autocomplete="off"
+                [ngClass]="{
+                  'is-invalid': productName?.invalid,
+                  'is-valid': !productName?.invalid
+                }"
+              />
+              <div
+                class="alert alert-danger text-danger p-0 text-start px-3 w-100"
+                *ngIf="
+                  productName?.invalid &&
+                  (productName?.dirty || productName?.touched)
+                "
+              >
+                <p style="font-size: small; margin: 0">
+                  <small *ngIf="productName?.errors?.['required']"
+                    >Product Name is Required</small
+                  >
+                  <small *ngIf="productName?.errors?.['pattern']"
+                    >Product Name Must be greater than 3</small
+                  >
+                </p>
+              </div>
+            </div>
+
+            <div class="form-group my-1 col-12">
+              <textarea
+                type="text"
+                class="form-control"
+                name="productDesc"
+                placeholder="Product Description"
+                formControlName="productDesc"
+                rows="3"
+                autocomplete="off"
+                [ngClass]="{
+                  'is-invalid': productDesc?.invalid,
+                  'is-valid': !productDesc?.invalid
+                }"
+              >
+                <div
+                class="alert alert-danger text-danger p-0 text-start px-3"
+                *ngIf="
+                  productDesc?.invalid &&
+                  (productDesc?.dirty || productDesc?.touched)
+                "
+                >
+                  <p style="font-size: small; margin: 0">
+                    <small *ngIf="productDesc?.errors?.['required']"
+                      >Product Description is Required</small
+                    >
+                  </p>
+                </div>
+              </textarea>
+            </div>
+
+            <div class="form-group my-1 col-3">
+              <input
+                type="number"
+                class="form-control w-100"
+                name="productPrice"
+                placeholder="Price"
+                formControlName="productPrice"
+                autocomplete="off"
+                [ngClass]="{
+                  'is-invalid': productPrice?.invalid,
+                  'is-valid': !productPrice?.invalid
+                }"
+              />
+              <div
+                class="alert alert-danger text-danger p-0 mt-2 text-start px-3"
+                *ngIf="productPrice?.invalid && productPrice?.dirty"
+              >
+                <p style="font-size: small; margin: 0">
+                  <small *ngIf="productPrice?.errors?.['required']"
+                    >Product Price is Required.</small
+                  >
+                  <small *ngIf="productPrice?.errors?.['pattern']"
+                    >Product Price must be a Positive Number</small
+                  >
+                </p>
+              </div>
+            </div>
+
+            <div class="form-group my-1 col-3">
+              <input
+                type="number"
+                class="form-control w-100"
+                name="productDiscount"
+                placeholder="Discount"
+                formControlName="productDiscount"
+                autocomplete="off"
+                [ngClass]="{
+                  'is-invalid': productDiscount?.invalid,
+                  'is-valid': !productDiscount?.invalid
+                }"
+              />
+              <div
+                class="alert alert-danger text-danger p-0 mt-2 text-start px-3"
+                *ngIf="productDiscount?.invalid"
+              >
+                <p style="font-size: small; margin: 0">
+                  <small *ngIf="productDiscount?.errors?.['required']"
+                    >productDiscount is Required</small
+                  >
+                  <small *ngIf="productDiscount?.errors?.['pattern']"
+                    >Product Discount must be a Positive umber.</small
+                  >
+                </p>
+              </div>
+            </div>
+
+            <div class="form-group my-1 col-5">
+              <input
+                type="number"
+                class="form-control w-100"
+                name="productItemsInStock"
+                placeholder="No. of Items in Stock"
+                formControlName="productItemsInStock"
+                autocomplete="off"
+                [ngClass]="{
+                  'is-invalid': productItemsInStock?.invalid,
+                  'is-valid': !productItemsInStock?.invalid
+                }"
+              />
+              <div
+                class="alert alert-danger text-danger p-0 mt-2 text-start px-3"
+                *ngIf="
+                  productItemsInStock?.invalid && productItemsInStock?.dirty
+                "
+              >
+                <p style="font-size: small; margin: 0">
+                  <small *ngIf="productItemsInStock?.errors?.['required']"
+                    >No. Items In Stock is Required.</small
+                  >
+                  <small *ngIf="productItemsInStock?.errors?.['pattern']"
+                    >No. Items In Stock Must be a valid Number</small
+                  >
+                </p>
+              </div>
+            </div>
+
+            <div class="form-group my-1 col-12">
+              <label
+                >Category
+                <i class="fw-light text-secondary">
+                  (Hint: You can Choose Multiple Ones)
+                </i></label
+              >
+              <div>
+                <select
+                  multiple
+                  class="selectpicker form-control"
+                  formControlName="productCategory"
+                  [ngClass]="{
+                    'is-invalid': productCategory?.invalid,
+                    'is-valid': !productCategory?.invalid
+                  }"
+                >
+                  <option value="Indoor Plants">Indoor Plants</option>
+                  <option value="Ceramic Pots">Ceramic Pots</option>
+                  <option value="Low Maintenance">Low Maintenance</option>
+                  <option value="Plant Bundle">Plant Bundle</option>
+                  <option value="Air Purifying">Air Purifying</option>
+                </select>
+                <div
+                  class="alert alert-danger text-danger p-0 text-start px-3"
+                  *ngIf="productCategory?.invalid && productCategory?.dirty"
+                >
+                  <p style="font-size: small; margin: 0">
+                    <small *ngIf="productCategory?.errors?.['required']"
+                      >Product Category is Required</small
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group my-1 col-12">
+              <label
+                >Images
+                <i class="fw-light text-secondary">
+                  (Hint: You can Choose Multiple Ones)
+                </i></label
+              >
+              <input
+                type="file"
+                class="form-control w-100"
+                name="imageUrl"
+                formControlName="imageUrl"
+                (change)="onFileInputChange($event)"
+                multiple
+              />
+            </div>
+
+            <div
+              class="text-danger text-danger p-0 text-center px-3 mt-3 text-center"
+              *ngIf="formErrorMessage"
+            >
+              <p>{{ formErrorMessage }}</p>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-end my-3">
+            <button class="btn btn-light border" data-bs-dismiss="modal">
+              Cancel
+            </button>
+            <button
+              class="btn btn-info submit-btn"
+              type="submit"
+              data-bs-dismiss="modal"
+              [disabled]="!editProductForm.valid"
+            >
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Product Modal -->
+<div class="modal fade" id="DeleteModal">
+  <div class="modal-dialog modal-confirm modal-dialog-centered my-auto">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="d-flex flex-column justify-content-center w-100">
+          <div class="icon-box text-center">
+            <img src="./assets/images/icons/dying.gif" />
+          </div>
+          <h4 class="modal-title">
+            Confirmation <br /><span class="userName-Style"
+              >Are you sure to delete this product?
+            </span>
+          </h4>
+        </div>
+      </div>
+      <div class="modal-footer pb-0">
+        <form class="w-100" (click)="deletedSelectedProduct()">
+          <button
+            type="button"
+            class="btn btn-danger w-100"
+            data-bs-dismiss="modal"
+          >
+            Delete
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Show Product Modal -->
+<div class="modal fade" id="showModal">
+  <div class="modal-dialog modal-confirm modal-lg modal-dialog-centered my-auto h-100">
+    <div class="modal-content">
+      <div class="modal-body container-fluid">
+        <div class = "product-wrapper container-fluid mt-3">
+          <div class = "product-section container-fluid">
+
+            <!-- product left -->
+            <div class="row">
+
+              <!-- product left -->
+              <div class="product-imgs col-lg-7 col-xl-7 col-xxl-7 col-md-12 col-sm-12 col-xs-12  mt-4">
+                <div class="row">
+                  <div class="col-lg-3 col-xl-3 col-xxl-3 col-md-12 col-sm-12 col-xs-12 order-lg-1 order-md-2 order-xs-2 order-xxs-2 banner-button">
+                    <div class="img-select row gap-1 justify-content-center">
+                      <div class="img-item col-2 col-lg-12" *ngFor="let image of productDetails.productImages; let i = index">
+                        <button class="d-block btn btn-link" data-bs-target="#carouselExampleFade" [attr.data-bs-slide-to]="i">
+                          <img src="{{image}}" alt="show image" class="img-select-image w-100">
+                        </button>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="col-lg-8 col-xl-8 col-xxl-8 col-md-12 col-sm-12 col-xs-12 order-lg-2 order-md-1 order-sm-1 order-xs-1 order-xxs-1 banner">
+                    <div class="img-display d-flex justify-content-center">
+                      <div id="carouselExampleFade" class="carousel slide carousel-fade">
+                        <div class="carousel-inner">
+                          <ng-container *ngFor="let image of productDetails.productImages; let i = index">
+                            <div class="carousel-item" [class.active]="i === 0">
+                              <img class="d-block w-100" src="{{image}}" alt="Slide">
+                            </div>
+                          </ng-container>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <!-- product right -->
+              <div class = "product-content col-xxl-5 col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12 text-lg-start text-sm-center text-md-center">
+                <h3 class="product-title">{{productDetails.productName}}</h3>
+
+                <div class="product-price d-flex justify-content-start justify-content-sm-center justify-content-lg-start mb-0">
+                  <p class = "last-price" *ngIf="productDetails.productDiscount">${{productDetails.productPrice}}</p>
+                  <p class = "new-price">${{(productDetails.productPrice)-((productDetails.productDiscount)/100)}}</p>
+                </div>
+                <div class = "product-rating">
+                  <span *ngIf="productDetails.productRate">
+                    <ng-container *ngFor="let star of getStarsArray(productDetails.productRate)">
+                      <i class="fas fa-star" [ngClass]="{'half-star': star === 0.5}"></i>
+                    </ng-container>
+                  </span>
+                  <span id="review">({{productDetails.productReviewNum}} custom reviews)</span>
+                </div>
+                <hr class="my-2"/>
+
+                <div class = "product-detail">
+                  <p>{{productDetails.productDesc}}</p>
+                </div>
+                <hr class="my-2"/>
+
+                <div class = "product-detail text-start">
+                  <ul>
+                    <i class="fas fa-check-circle" style="color: #444646;"></i> <li>Available: <span>{{productDetails.productItemsinStock}}&nbsp;in stock</span></li><br>
+                    <i class="fas fa-check-circle" style="color: #444646;"></i><li>Category: <span>{{productDetails.productCategory}}</span></li><br>
+                    <i class="fas fa-check-circle" style="color: #444646;"></i><li>Shipping Area: <span>All over Alexandria</span></li><br>
+                  </ul>
+                </div>
+
+              </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer py-3">
+        <button type="button" class="btn btn-info  submit-btn" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

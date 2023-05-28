@@ -1,0 +1,179 @@
+/*******filter button*********/
+.filter-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition-duration: 0.3s;
+  overflow: hidden;
+  position: relative;
+}
+
+.svgIcon {
+  width: 27px;
+  transition-duration: 0.3s;
+}
+
+.svgIcon path {
+  fill: #224229;
+}
+
+.filter-button:hover {
+  width: 140px;
+  border-radius: 50px;
+  transition-duration: 0.3s;
+  background-color: #224229;
+  align-items: center;
+}
+
+.filter-button:hover .svgIcon {
+  width: 40px;
+  transition-duration: 0.3s;
+  transform: translateY(60%);
+}
+.filter-button:hover .svgIcon path {
+  fill: white;
+}
+.filter-button::before {
+  position: absolute;
+  top: -20px;
+  content: "Filter";
+  color: white;
+  transition-duration: 0.3s;
+  font-size: 2px;
+}
+
+.filter-button:hover::before {
+  font-size: 13px;
+  opacity: 1;
+  transform: translateY(30px);
+  transition-duration: 0.3s;
+}
+
+/********filter side bar*********/
+.filter-sidebar {
+  opacity: 1;
+  visibility: visible;
+  max-width: 330px;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  display: block !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #fff;
+  height: 100%;
+  z-index: 200 !important;
+  overflow: auto;
+  padding: 0 0 50px !important;
+  margin: 0;
+  box-shadow: 0 1px 12px 2px hsla(0, 0%, 56%, 0.3);
+  color: black;
+}
+
+.button-filter-close {
+  color: #313232;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-weight: 500;
+  text-align: right;
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 40px;
+  padding: 0;
+  position: sticky;
+  top: 0;
+  padding: 20px 15px;
+  background: #fff;
+  z-index: 100;
+  box-shadow: 0 1px 12px 2px hsla(0, 0%, 56%, 0.15);
+}
+
+.sidebar-h3 {
+  color: #313232;
+  background: transparent;
+  font-weight: 400;
+  font-size: 18px;
+  margin: 0 0 20px;
+  position: relative;
+  line-height: 20px;
+  font-family: Libre Baskerville, serif;
+}
+.item-category {
+  cursor: pointer;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Poppins, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #828787;
+  text-align: left;
+}
+.item-category:hover,
+.active {
+  color: #313232 !important;
+}
+.item-category label {
+  font-weight: 500;
+  margin: 0;
+  cursor: pointer;
+}
+.item-category .count {
+  color: inherit;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  background: #f1f1f1;
+  text-align: center;
+  line-height: 25px;
+  font-size: 12px;
+}
+.sidebar-container {
+  position: relative;
+  z-index: 9999;
+}
+
+/**********Sort Drop down************/
+.dropdown-toggle {
+  position: relative;
+  border: 1px solid #313232;
+  display: inline-block;
+  line-height: 34px;
+  padding: 0 20px;
+  color: #313232;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 33px;
+  text-transform: capitalize;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.dropdown-li{
+  line-height: 28px;
+  text-transform: capitalize;
+  font-weight: 400;
+}
+.dropdown-item {
+  color: #828787;
+  cursor: pointer;
+}
+.dropdown-item:focus, .dropdown-item:hover {
+  background-color: #ffffff;
+  color: #224229;
+}

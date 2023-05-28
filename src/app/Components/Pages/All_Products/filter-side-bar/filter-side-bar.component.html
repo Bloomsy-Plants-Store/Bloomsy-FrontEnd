@@ -1,0 +1,58 @@
+<div class="container-fulid  m-auto p-5">
+
+  <div class="row w-100">
+    <div class="col-8">
+      <div id="toggle-button">
+        <!-- Button to open the sidenav -->
+        <button class="filter-button text-center" (click)="sidenav.open();">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+            class="bi bi-sliders svgIcon" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z" />
+          </svg> </button>
+      </div>
+    </div>
+
+  </div>
+  <mat-sidenav-container class="sidebar-container">
+    <mat-sidenav #sidenav mode="side">
+      <div class="filter-sidebar w-100">
+        <div class="button-filter-close" (click)="sidenav.close();">
+          Close
+          <i class="bi bi-x-lg"></i>
+        </div>
+        <aside id="aside-sidebar " class="widget bwp_ajax_filte">
+          <div id="filter">
+            <form id="filter-form">
+              <div class="category-filter px-4">
+                <h3 class="sidebar-h3">Categories</h3>
+                <div id="pa_category" class="filter_category_product" >
+                  <div data-id_category="431" class="item-category" [id]="removeSpaces(category._id)"id="{{category._id}}" *ngFor="let category of categories" (click)="handleContainerClick(category._id)">
+                    <label class="name">{{category._id}}</label>
+                    <div class="count">{{category.count}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="price-filter mt-4 px-4">
+                <h3 class="sidebar-h3">Price</h3>
+                <div class="content-filter-price">
+                  <div id="bwp_slider_price" data-min="32" data-max="1200"
+                    class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                    <div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 0%; width: 100%;">
+                    </div><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"
+                      style="left: 0%;"></span><span tabindex="0"
+                      class="ui-slider-handle ui-corner-all ui-state-default" style="left: 100%;"></span>
+                  </div>
+                  <div class="price-input">
+                    <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options" (userChange)="HandleEvent()"></ngx-slider>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </aside>
+      </div>
+    </mat-sidenav>
+  </mat-sidenav-container>
+</div>
+
