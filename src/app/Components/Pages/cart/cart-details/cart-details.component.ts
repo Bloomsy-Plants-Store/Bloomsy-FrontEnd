@@ -85,7 +85,14 @@ flag : any;
   }
 
   checkout() {
-    this.checkoutService.setCartObject(+this.totalPriceForAllProduct(), this.dataSource, this.flag = "checkout");
+    const accessToken = localStorage.getItem('access_token');
+    if (!accessToken) {
+      this.router.navigate(['/login']);
+    }
+    else {
+      this.checkoutService.setCartObject(+this.totalPriceForAllProduct(), this.dataSource, this.flag = "checkout");
+      this.router.navigate(['/checkout']);
+    }
 
   }
 

@@ -128,7 +128,6 @@ export class CheckoutComponent{
   order() {
     console.log("Order")
     let user = JSON.parse(localStorage.getItem('access_token')!).UserId;
-
     this.orderService.makeOrder(user, this.total, this.Items)
       .subscribe({
         next: (data: any) => {
@@ -145,16 +144,7 @@ export class CheckoutComponent{
     })
   }
 
-  // buyNow() {
-  //   let user = JSON.parse(localStorage.getItem('access_token')!).UserId;
-  //   this.orderService.makeOrder(user, this.total, this.Items)
-  //     .subscribe({
-  //       next: (data: any) => {
-  //       }, error(err) {
-  //         console.log(err);
-  //       }
-  //   })
-  // }
+
 
   submitCheckout(): void{
     if (this.validationCheckoutForm.valid) {

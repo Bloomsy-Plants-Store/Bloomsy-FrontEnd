@@ -143,7 +143,13 @@ export class ProductDetailsComponent {
 
   // total price , array of elements
   checkout() {
-    let product_arr = [];
+
+      const accessToken = localStorage.getItem('access_token');
+      if (!accessToken) {
+        this.router.navigate(['/login']);
+      }
+      else {
+        let product_arr = [];
     if (JSON.parse(localStorage.getItem('access_token')!)) {
       let id = JSON.parse(localStorage.getItem('access_token')!).UserId;
       let product = {
@@ -156,6 +162,11 @@ export class ProductDetailsComponent {
       this.checkoutService.setCartObject(+this.totalPriceForAllProduct(),
         product_arr, this.flag = "buyNow");
     }
+        this.router.navigate(['/checkout']);
+      }
+
+
+
 
   }
 
