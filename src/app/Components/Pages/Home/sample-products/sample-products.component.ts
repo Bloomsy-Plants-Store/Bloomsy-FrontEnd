@@ -116,31 +116,35 @@ export class SampleProductsComponent implements OnInit {
   }
 
   addOrRemoveFavourite(productId: any) {
-    console.log(this.isFavorited);
-    let userId = JSON.parse(localStorage.getItem('access_token')!).UserId;
-    const isFavorited = this.favoritesMap.get(productId) || false;
+    if (localStorage.getItem('access_token')) {
+      let userId = JSON.parse(localStorage.getItem('access_token')!).UserId;
+      const isFavorited = this.favoritesMap.get(productId) || false;
 
-    if (isFavorited) {
-      console.log("delete");
-      this.favouritesService.deleteProductFromFavourites(userId, productId).subscribe({
-        next: (response: any) => {
-          this.favoritesMap.set(productId, false);
-        },
-        error: (err: any) => {
-          console.log(err);
-        }
-      });
+      if (isFavorited) {
+
+        this.favouritesService.deleteProductFromFavourites(userId, productId).subscribe({
+          next: (response: any) => {
+            this.favoritesMap.set(productId, false);
+          },
+          error: (err: any) => {
+            console.log(err);
+          }
+        });
+      } else {
+
+        this.favouritesService.addProductToFavourites(userId, productId).subscribe({
+          next: (response: any) => {
+            this.favoritesMap.set(productId, true);
+          },
+          error: (err: any) => {
+            console.log(err);
+          }
+        });
+      }
     } else {
-      console.log("add");
-      this.favouritesService.addProductToFavourites(userId, productId).subscribe({
-        next: (response: any) => {
-          this.favoritesMap.set(productId, true);
-        },
-        error: (err: any) => {
-          console.log(err);
-        }
-      });
-    }
+      this.router.navigate(['/login']);
+}
+
   }
 
   checkProductInFavourites() {

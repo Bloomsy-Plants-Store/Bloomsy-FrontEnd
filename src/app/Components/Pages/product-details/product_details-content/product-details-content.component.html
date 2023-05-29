@@ -64,7 +64,7 @@
         <div class="product-rating">
           <ng-container *ngFor="let star of getStarsArray(Product?.rate)">
             <i
-              class="fas fa-star"
+            class="bi bi-star"
               [ngClass]="{ 'half-star': star === 0.5 }"
             ></i>
           </ng-container>
@@ -110,7 +110,7 @@
             class="btn round-black-btn"
             (click)="addProductToCart(Product?._id, Product?.price)"
           >
-            Add to Cart &nbsp;<i class="fas fa-shopping-cart"></i>
+            Add to Cart &nbsp; <i class="bi bi-bag"></i>
           </button>
 
           <button id="fav" (click)="addOrRemoveFavourite(Product?._id)">
@@ -156,17 +156,17 @@
 
         <div class="product-detail text-start">
           <ul>
-            <i class="fas fa-check-circle" style="color: #444646"></i>
+            <i class="bi bi-patch-check-fill" style="color: #224229"></i>
             <li>
               Available: <span>{{ Product?.itemsinStock }}&nbsp;in stock</span>
             </li>
             <br />
-            <i class="fas fa-check-circle" style="color: #444646"></i>
+            <i class="bi bi-patch-check-fill" style="color: #224229"></i>
             <li>
               Category: <span>{{ Product?.category }}</span>
             </li>
             <br />
-            <i class="fas fa-check-circle" style="color: #444646"></i>
+            <i class="bi bi-patch-check-fill" style="color: #224229"></i>
             <li>Shipping Area: <span>All over Alexandria</span></li>
             <br />
           </ul>

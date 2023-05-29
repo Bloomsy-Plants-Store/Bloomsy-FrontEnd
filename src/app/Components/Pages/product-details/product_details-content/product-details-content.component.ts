@@ -97,29 +97,32 @@ export class ProductDetailsComponent {
   }
 
   addOrRemoveFavourite(productId: any) {
-    console.log(this.isFavorited);
-    let userId = JSON.parse(localStorage.getItem('access_token')!).UserId;
-    if (this.isFavorited) {
-      console.log("delete");
-      this.favouritesService.deleteProductFromFavourites(userId, productId).subscribe({
-        next: (response: any) => {
-          this.isFavorited = false;
-        },
-        error: (err: any) => {
-          console.log(err);
-        }
-      });
+    if (localStorage.getItem('access_token')) {
+      let userId = JSON.parse(localStorage.getItem('access_token')!).UserId;
+      if (this.isFavorited) {
+        this.favouritesService.deleteProductFromFavourites(userId, productId).subscribe({
+          next: (response: any) => {
+            this.isFavorited = false;
+          },
+          error: (err: any) => {
+            console.log(err);
+          }
+        });
+      } else {
+        console.log("add");
+        this.favouritesService.addProductToFavourites(userId, productId).subscribe({
+          next: (response: any) => {
+            this.isFavorited = true;
+          },
+          error: (err: any) => {
+            console.log(err);
+          }
+        });
+      }
     } else {
-      console.log("add");
-      this.favouritesService.addProductToFavourites(userId, productId).subscribe({
-        next: (response: any) => {
-          this.isFavorited = true;
-        },
-        error: (err: any) => {
-          console.log(err);
-        }
-      });
+      this.router.navigate(['/login']);
     }
+
   }
 
   decreaseQuantity(): void {
