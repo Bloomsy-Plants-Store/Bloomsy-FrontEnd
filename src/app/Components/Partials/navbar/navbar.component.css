@@ -20,12 +20,13 @@ nav .fa-bars {
   border-radius: 50%;
   right: 0.5rem!important;
   top:-10px!important;
+  font-size: 12px;
 
   position: relative;
 }
 
 .cart {
- padding-right: -20px !important;
+ padding: 8px 0 8px 16px !important;
 }
 
 .newTitle{
@@ -43,9 +44,7 @@ nav .fa-bars {
   .navbar-scroll .fa-bars {
     color: white !important;
   }
-  .navbar-scroll .nav-link .fa-solid{
-   display: none !important;
-}
+
 .navbar-nav{
   margin: 0!important;
 }
@@ -233,13 +232,11 @@ display: none !important;
 }
 }
 @media (max-width: 991px){
-  .myyy {
+.myyy
+ {
     display: none!important;
 }
 
-ul.navbar-nav{
-  margin:0.5rem 2rem !important;
-}
 span.cart-badge{
   right: 55px;
   top: 20px;

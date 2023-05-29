@@ -53,15 +53,18 @@ flag : any;
 
 
   getAllProductsOnCart() {
-    let userId = JSON.parse(localStorage.getItem('access_token')!).UserId;
-    this.myService.GetAllProductsInCart(userId).subscribe({
-      next: (response: any) => {
-        this.dataSource = response.cart;
-      },
-      error: (err) => {
-        console.log(err);
-      }
-   })
+    if (localStorage.getItem('access_token') != null) {
+      let userId = JSON.parse(localStorage.getItem('access_token')!).UserId;
+      this.myService.GetAllProductsInCart(userId).subscribe({
+        next: (response: any) => {
+          this.dataSource = response.cart;
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
+    }
+
   }
 
   removeCartItem(element: any): void  {
