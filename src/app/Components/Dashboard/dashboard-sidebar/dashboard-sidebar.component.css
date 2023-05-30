@@ -92,7 +92,7 @@
   transition: all 0.3s ease;
 }
 .sidebar.close .toggle {
-  transform: translateY(-50%) rotate(0deg);
+  transform: translateY(-50%) rotate(0deg) !important;
 }
 .sidebar .menu {
   margin-top: 15px;
