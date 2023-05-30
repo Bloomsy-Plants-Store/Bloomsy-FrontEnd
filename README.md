@@ -1,5 +1,5 @@
 <div align="center" margin-top="5px">
-  <img src="https://github.com/Bloomsy-Plants-Store/Bloomsy-FrontEnd/assets/81237428/b4f4925d-3b7b-4a46-b249-29ba6841ade4" alt="animate" width="200"/>
+  <img src="https://github.com/Bloomsy-Plants-Store/Bloomsy-FrontEnd/assets/81237428/b4f4925d-3b7b-4a46-b249-29ba6841ade4" alt="animate" width="150"/><br>
   <a href="https://bloomsy-168d4.web.app/">
     <img src="https://readme-typing-svg.demolab.com?font=Dancing+Script&weight=700&size=30&pause=1000&color=749D77&center=true&vCenter=true&width=435&lines=Bloomsy+;A+Stunning+Plants+Store" alt="Typing SVG">
   </a>
