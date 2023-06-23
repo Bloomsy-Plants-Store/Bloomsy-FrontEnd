@@ -46,9 +46,19 @@ Explore Our Curated Selection of indoor and outdoor plants, including vibrant fl
 - **Mobile Responsiveness**<br>
   The website is designed to be responsive across various devices, including smartphones and tablets. It offers a seamless browsing and shopping experience, allowing customers to shop for plants on the go.
 
+- **Chatbot Assistance for Plant Selection**<br>
+Our chatbot helps you find plants that match your preferences using advanced algorithms and a vast plant database. It provides personalized recommendations based on lighting, maintenance, and aesthetics, catering to all levels of plant enthusiasts.
+
+- **Order Tracking for Seamless Shopping Experience**<br>
+Our website offers order tracking for customers to stay informed about their purchases. From confirmation to delivery, easily monitor progress with real-time updates for a hassle-free experience.
+
 ## **DEMO**
 
-We Hope That You are enjoying Watching Our Demo Video [🎥](https://www.youtube.com/watch?v=-8E6sfRQGCw)
+🎥 We Hope That You are enjoying Watching Our Demo Video from [Here](https://www.youtube.com/watch?v=RJKBdzqMcSk)
+
+## **DOCUMENTATION**
+
+📄 Check Bloomsy Documentation from [Here](https://drive.google.com/file/d/1IU-pzHB55jK6z_eInz3KAP2h5fcJ4iZ9/view?usp=sharing)
 
 ## **INSTALLATION**
 
