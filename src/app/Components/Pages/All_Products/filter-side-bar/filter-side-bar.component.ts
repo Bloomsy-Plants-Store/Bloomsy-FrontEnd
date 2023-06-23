@@ -54,7 +54,7 @@ export class FilterSideBarComponent implements OnInit {
           this.maxValue = value;
           return "<b>Max price:</b> EGP" + value;
         default:
-          return "$" + value;
+          return "EGP" + value;
       }
     }
   };
