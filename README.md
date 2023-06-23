@@ -91,6 +91,7 @@ to this Repository as it can make a Significant Difference.
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Dancing+Script&weight=700&size=20&height=25&duration=1&pause=1000&color=749D77&vCenter=true&lines=Radwa+Hassan)](https://github.com/RadwaHassan99)  </br>
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Dancing+Script&weight=700&size=20&height=25&duration=1&pause=1000&color=749D77&vCenter=true&lines=Rowan+Tamer)](https://github.com/rowantamer)  </br>
 
-![IMG-20230527-WA0002](https://github.com/Bloomsy-Plants-Store/Bloomsy-FrontEnd/assets/81237428/0b9d58bb-49c0-4c27-bd3c-e2169c35e01d)
+![247964536-2fef0b4d-81ef-4e9b-ae6d-39a3aaca8f4d](https://github.com/Bloomsy-Plants-Store/Bloomsy-FrontEnd/assets/81237428/ebdf1a7e-0119-4761-a35c-bf4a980c4383)
+
 
 
