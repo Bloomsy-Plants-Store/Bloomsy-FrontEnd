@@ -103,6 +103,10 @@
                                     <div class="container receipt pb-0">
                                         <div class="details">
                                             <h2 class="text-center mb-5">ORDER DETAILS</h2>
+                                            <div class="d-flex align-items-end totalprice mb-5">
+                                                <p class="me-auto text-uppercase fs-5" [style.color]="getStatusColor()">{{ clickedOrder['status'] }}</p>
+                                                <button (click)="cancelOrder()" *ngIf="clickedOrder['status'] == 'pending'" class="btn text-white" style="background-color: #6f8f75;">Cancel Order</button>
+                                            </div>
                                             <div class="row product d-flex mb-4"
                                                 *ngFor="let product of clickedOrderProducts">
                                                 <img src="{{product.imageUrl[0]}}" alt="" class="mr-3 col-6 col-sm-12 rounded-5"
@@ -157,7 +161,7 @@
                                                 </div>
                                             </div>
 
-                                           
+
                                             <div class="title-price-section d-flex justify-content-between my-2">
                                                 <span class="title-section">
                                                     <span>{{product.product_id.name}}</span>

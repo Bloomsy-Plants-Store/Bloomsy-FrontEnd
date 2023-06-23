@@ -1,0 +1,110 @@
+.drag-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 3%;
+}
+
+.container {
+  flex: 1 1 300px;
+  margin-right: 10px;
+  margin-bottom: 5%;
+}
+
+.list {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  min-height: 600px;
+  max-height: 600px;
+  overflow: auto;
+  background-image: url("../../../../assets/images/modal-bg.png");
+  background-repeat: no-repeat;
+  background-position: top left;
+}
+
+.list-item {
+  margin-bottom: 10px;
+  background-color: #f7f7f7;
+  padding: 10px;
+  border-radius: 0.3rem;
+  border: 1px solid #628665;
+  cursor: move;
+ border-radius: 10px;
+
+}
+
+
+.card:hover > .img {
+  transition: 0.5s ease-in-out;
+  background: linear-gradient(#9198e5, #712020);
+}
+
+.textBox {
+  margin-left: 10px;
+  color: black;
+  font-family: 'Poppins' sans-serif;
+}
+
+.textContent {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+
+}
+
+.orderby{
+  font-size: 14px;
+  font-weight: 300;
+  color: #628665;
+}
+.h1 {
+  font-size: 16px;
+  font-weight: 700;
+}
+.bi-currency-pound{
+  color: #628665;
+  font-weight: bolder;
+}
+.span {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.p {
+  font-size: 12px;
+  font-weight: 200;
+}
+
+
+/*
+@media (max-width: 767px) {
+  .list-item {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  h4{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+} */
+
+@media (max-width:1413px) {
+.drag-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+@media (max-width:550px) {
+  .drag-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+  }
+
+}
+}

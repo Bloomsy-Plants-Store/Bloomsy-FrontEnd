@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
-
+  ngOnInit() {
+    window.scroll(0, 0);
+  }
 }

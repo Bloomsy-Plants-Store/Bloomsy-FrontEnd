@@ -215,3 +215,13 @@ input:focus{
   height: 8vh;
 }
 
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table-container table {
+  width: max-content;
+}
+

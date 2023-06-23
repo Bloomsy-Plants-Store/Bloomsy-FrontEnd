@@ -27,6 +27,7 @@
         aria-controls="navbarSupportedContent"
         aria-expanded="false"
         aria-label="Toggle navigation"
+        id="navbarToggler"
       >
         <i class="fas fa-bars"></i>
       </button>
@@ -36,16 +37,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto ms-auto mb-2 mb-lg-0 d-flex gap-3">
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" routerLink="/" >HOME</a>
+          <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" routerLink="/" (click)="closeNavbar()" >HOME</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/products">PRODUCTS</a>
+          <a class="nav-link" routerLinkActive="active" routerLink="/products" (click)="closeNavbar()">PRODUCTS</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/about-us">ABOUT</a>
+          <a class="nav-link" routerLinkActive="active" routerLink="/about-us" (click)="closeNavbar()">ABOUT</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/contact-us">CONTACT US</a>
+          <a class="nav-link" routerLinkActive="active" routerLink="/contact-us" (click)="closeNavbar()">CONTACT US</a>
         </li>
       </ul>
     </div>
@@ -79,12 +80,11 @@
     </ul>
 
   </div>
-
 </nav>
 
-<!--Profile Modal-->
+<!--User Modal-->
 <div class="modal fade" id="ProfileModal">
-  <div class="modal-dialog modal-confirm modal-dialog-centered my-auto">
+  <div class="modal-dialog modal-confirm modal-dialog-centered m-auto">
     <div class="modal-content">
       <div class="modal-header">
         <div class="d-flex flex-column justify-content-center w-100">
@@ -97,14 +97,17 @@
         </div>
       </div>
       <div class="modal-footer">
-        <form class="w-100" (ngSubmit)="logout()">
-          <button type="submit" class="btn btn-info me-4" routerLink="/" >
-            LogOut
-          </button>
-          <a routerLink="/profile" class="btn btn-info" data-bs-dismiss="modal">
+        <div class="w-100 d-flex justify-content-center gap-3 mt-3">
+          <form class="w-50" (ngSubmit)="logout()">
+            <button type="submit" class="btn btn-info w-100" routerLink="/" >
+              LogOut
+            </button>
+          </form>
+
+          <button routerLink="/profile" class="btn btn-info w-50" data-bs-dismiss="modal">
             Profile
-          </a>
-        </form>
+          </button>
+        </div>
         <div
           class="w-100 text-danger my-3 text-center"
           *ngIf="errorMessage"

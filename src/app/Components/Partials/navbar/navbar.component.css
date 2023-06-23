@@ -127,7 +127,7 @@ nav .fa-bars {
   letter-spacing: 40px;
 }
 
-
+/* User Modal */
 .custom-modal {
   animation: bounceIn 0.5s;
 }
@@ -173,7 +173,6 @@ nav .fa-bars {
 
 .modal-confirm .modal-footer{
   border: none;
-  text-align: center;
   border-radius: 5px;
   font-size: 13px;
 }

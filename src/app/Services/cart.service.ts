@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
+import { config } from '../config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-private Base_URL = "https://bloomsy.onrender.com/users/"
+private Base_URL = `${config.backendUrl}/users/`
   constructor(private readonly myClient: HttpClient) { }
+  
   public cartUpdatedSubject: Subject<void> = new Subject<any>();
   public cartUpdatedObservable: Observable<void> = this.cartUpdatedSubject.asObservable();
 

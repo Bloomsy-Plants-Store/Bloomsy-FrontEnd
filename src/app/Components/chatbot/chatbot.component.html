@@ -1,0 +1,81 @@
+<div id="helpdesk">
+  <button class="chatBtn" (click)="openSupportPopup()">
+    <svg
+      height="1.6em"
+      fill="white"
+      xml:space="preserve"
+      viewBox="0 0 1000 1000"
+      y="0px"
+      x="0px"
+      version="1.1"
+    >
+      <path
+        d="M881.1,720.5H434.7L173.3,941V720.5h-54.4C58.8,720.5,10,671.1,10,610.2v-441C10,108.4,58.8,59,118.9,59h762.2C941.2,59,990,108.4,990,169.3v441C990,671.1,941.2,720.5,881.1,720.5L881.1,720.5z M935.6,169.3c0-30.4-24.4-55.2-54.5-55.2H118.9c-30.1,0-54.5,24.7-54.5,55.2v441c0,30.4,24.4,55.1,54.5,55.1h54.4h54.4v110.3l163.3-110.2H500h381.1c30.1,0,54.5-24.7,54.5-55.1V169.3L935.6,169.3z M717.8,444.8c-30.1,0-54.4-24.7-54.4-55.1c0-30.4,24.3-55.2,54.4-55.2c30.1,0,54.5,24.7,54.5,55.2C772.2,420.2,747.8,444.8,717.8,444.8L717.8,444.8z M500,444.8c-30.1,0-54.4-24.7-54.4-55.1c0-30.4,24.3-55.2,54.4-55.2c30.1,0,54.4,24.7,54.4,55.2C554.4,420.2,530.1,444.8,500,444.8L500,444.8z M282.2,444.8c-30.1,0-54.5-24.7-54.5-55.1c0-30.4,24.4-55.2,54.5-55.2c30.1,0,54.4,24.7,54.4,55.2C336.7,420.2,312.3,444.8,282.2,444.8L282.2,444.8z"
+      ></path>
+    </svg>
+    <span class="tooltip">Chat</span>
+  </button>
+
+  <div id="helpdesk-popup" [style.display]="isOpen ? 'block' : 'none'">
+    <div id="helpdesk-popup-header">
+      Bloomsy Talk
+      <button class="close-btn" (click)="openSupportPopup()">
+
+      </button>
+    </div>
+    <div id="helpdesk-popup-body" [style.background]="'url(./assets/images/modal-bg.png) no-repeat top left'">
+      <div class="messages" #scrollMe>
+        <div *ngFor="let message of messages" class="message">
+          <div [class]="message.type">
+            {{ message.message }}
+          </div>
+        </div>
+        <div
+          *ngIf="loading"
+          class="message"
+          style="width: 100%; display: block"
+        >
+          <div [class]="'client'">...</div>
+        </div>
+      </div>
+    </div>
+
+    <form id="helpdesk-popup-footer" [formGroup]="chatForm">
+      <div class="InputContainer">
+        <input
+          formControlName="message"
+          type="text"
+          id="helpdesk-popup-input"
+          placeholder="Type your message here..."
+        />
+
+        <div class="border"></div>
+
+        <button
+          [disabled]="!chatForm.valid"
+          (click)="sendMessage()"
+          class="sendMessage"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            version="1.0"
+            width="20pt"
+            height="20pt"
+            preserveAspectRatio="xMidYMid meet"
+            class="SendSVG"
+          >
+            <g
+              transform="translate(0.000000,30.000000) scale(0.100000,-0.100000)"
+              fill="#82b086"
+              stroke="none"
+            >
+              <path
+                d="M44 256 c-3 -8 -4 -29 -2 -48 3 -31 5 -33 56 -42 28 -5 52 -13 52 -16 0 -3 -24 -11 -52 -16 -52 -9 -53 -9 -56 -48 -2 -21 1 -43 6 -48 10 -10 232 97 232 112 0 7 -211 120 -224 120 -4 0 -9 -6 -12 -14z"
+              ></path>
+            </g></svg
+          >
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -4,6 +4,7 @@ import {
   OnInit,
   Input,
   SimpleChanges,
+  ViewChild,
 } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ProductsService } from 'src/app/Services/products.service';
@@ -11,6 +12,7 @@ import { CartService } from 'src/app/Services/cart.service';
 import { Router } from '@angular/router';
 import { CartDetailsComponent } from '../../../Pages/cart/cart-details/cart-details.component';
 import { FavouritesService } from 'src/app/Services/favourites.service';
+import * as bootstrap from 'bootstrap';
 @Component({
   selector: 'app-all-product-data',
   templateUrl: './all-product-data.component.html',
@@ -22,10 +24,13 @@ export class AllProductDataComponent implements OnInit {
   itemsPerPage = 12; // Number of items to display per page
   totalItems = 0;
   isFavorited: boolean = false;
+  @ViewChild('addToFavouriteModal') addToFavouriteModal!: ElementRef;
+  @ViewChild('removeFromFavouriteModal') removeFromFavouriteModal!: ElementRef;
   favoritesMap: Map<string, boolean> = new Map<string, boolean>();
+  FiltercategoryName: any;
+  PriceFlag=false;
 
-  @Input() FiltercategoryName: any;
-  @Input() FilterPriceRange: any;
+  FilterPriceRange: any;
 
   constructor(
     private elementRef: ElementRef,
@@ -34,21 +39,17 @@ export class AllProductDataComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private router: Router,
     public favouritesService: FavouritesService,
-  ) {}
+  ) {   this.DefaultAllProducts()
+  }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (this.FiltercategoryName) {
-      if(this.FiltercategoryName==="ALL Products")
-      {
-        this.DefaultAllProducts();
-      }
-      this.FilterByCategory();
-    }
+  showAddToFavouriteModal(){
+    const modal = new bootstrap.Modal(this.addToFavouriteModal.nativeElement);
+    modal.show();
+  }
 
-    if (  changes['FilterPriceRange'] &&
-      !changes['FilterPriceRange'].firstChange) {
-      this.FilterByPrice();
-    }
+  showRemoveFromFavouriteModal(){
+    const modal = new bootstrap.Modal(this.removeFromFavouriteModal.nativeElement);
+    modal.show();
   }
 
   FilterByCategory()
@@ -67,11 +68,14 @@ export class AllProductDataComponent implements OnInit {
       },
     });
   }
+
   FilterByPrice(){
     this.myService.getProductsByPrice(this.FilterPriceRange).subscribe({
       next: (response: any) => {
         this.Products = response.data;
+        console.log(this.Products)
         this.totalItems = this.Products.length;
+        console.log(this.totalItems)
         this.checkProductInFavourites();
         this.spinner.hide();
       },
@@ -99,9 +103,33 @@ export class AllProductDataComponent implements OnInit {
       },
     });
   }
+
   ngOnInit(): void {
-   this.DefaultAllProducts()
+    let prevCategoryValue:any;
+    let prevPriceValue: any;
+
+    this.myService.categoryObserver$.subscribe((value: any) => {
+      console.log("prevCategoryValue",prevCategoryValue)
+      if (value !== prevCategoryValue) {
+        this.FiltercategoryName = value;
+        if (this.FiltercategoryName === "ALL Products") {
+          this.DefaultAllProducts();
+        } else {
+            this.FilterByCategory();
+        }
+      }
+      prevCategoryValue = value;
+    });
+
+    this.myService.priceObserver$.subscribe((value: any) => {
+      if (value !== prevPriceValue &&this.FiltercategoryName === "ALL Products") {
+        this.FilterPriceRange = value;
+        this.FilterByPrice();
+      }
+      prevPriceValue = value;
+    });
   }
+
   getUpperBound(): number {
     const upperBound =
       (this.currentPage - 1) * this.itemsPerPage + this.itemsPerPage;
@@ -139,18 +167,20 @@ export class AllProductDataComponent implements OnInit {
   }
 
   addOrRemoveFavourite(productId: any) {
-    console.log(this.isFavorited);
+    this.spinner.show();
     let userId = JSON.parse(localStorage.getItem('access_token')!).UserId;
     const isFavorited = this.favoritesMap.get(productId) || false;
 
     if (isFavorited) {
-      console.log("delete");
       this.favouritesService.deleteProductFromFavourites(userId, productId).subscribe({
         next: (response: any) => {
           this.favoritesMap.set(productId, false);
+          this.spinner.hide();
+          this.showRemoveFromFavouriteModal();
         },
         error: (err: any) => {
           console.log(err);
+          this.spinner.hide();
         }
       });
     } else {
@@ -158,9 +188,12 @@ export class AllProductDataComponent implements OnInit {
       this.favouritesService.addProductToFavourites(userId, productId).subscribe({
         next: (response: any) => {
           this.favoritesMap.set(productId, true);
+          this.spinner.hide();
+          this.showAddToFavouriteModal();
         },
         error: (err: any) => {
           console.log(err);
+          this.spinner.hide();
         }
       });
     }

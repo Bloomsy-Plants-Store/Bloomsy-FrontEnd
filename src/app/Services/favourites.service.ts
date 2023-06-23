@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { config } from '../config';
 @Injectable({
   providedIn: 'root'
 })
 export class FavouritesService {
 
-  private Base_URL = "https://bloomsy.onrender.com/users/"
+  private Base_URL = `${config.backendUrl}/users/`
   constructor(private readonly myClient: HttpClient) { }
 
 

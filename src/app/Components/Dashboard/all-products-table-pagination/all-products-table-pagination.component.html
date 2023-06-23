@@ -433,8 +433,8 @@
                 <h3 class="product-title">{{productDetails.productName}}</h3>
 
                 <div class="product-price d-flex justify-content-start justify-content-sm-center justify-content-lg-start mb-0">
-                  <p class = "last-price" *ngIf="productDetails.productDiscount">${{productDetails.productPrice}}</p>
-                  <p class = "new-price">${{(productDetails.productPrice)-((productDetails.productDiscount)/100)}}</p>
+                  <p class = "last-price" *ngIf="productDetails.productDiscount">{{productDetails.productPrice | currency: 'EGP'}}</p>
+                  <p class = "new-price">{{(productDetails.productPrice)-((productDetails.productDiscount)/100) | currency: 'EGP'}}</p>
                 </div>
                 <div class = "product-rating">
                   <span *ngIf="productDetails.productRate">

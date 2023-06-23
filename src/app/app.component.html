@@ -1,14 +1,33 @@
 <app-navbar
   *ngIf="
-    !isLoginPage && !isSignUpPage && !isResetPasswordPage && !isDashboardPage && !isCheckoutPage && !isErrorPage
+    !isLoginPage &&
+    !isSignUpPage &&
+    !isResetPasswordPage &&
+    !isDashboardPage &&
+    !isCheckoutPage &&
+    !isErrorPage
   "
 >
 </app-navbar>
 
 <router-outlet></router-outlet>
-
+<app-chatbot
+  *ngIf="
+    !isLoginPage &&
+    !isSignUpPage &&
+    !isResetPasswordPage &&
+    !isDashboardPage &&
+    !isErrorPage
+  "
+></app-chatbot>
 <app-footer
   *ngIf="
-    !isLoginPage && !isSignUpPage && !isResetPasswordPage && !isDashboardPage && !isCheckoutPage && !isErrorPage
+    !isLoginPage &&
+    !isSignUpPage &&
+    !isResetPasswordPage &&
+    !isDashboardPage &&
+    !isCheckoutPage &&
+    !isErrorPage
   "
-></app-footer>
+>
+</app-footer>

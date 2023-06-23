@@ -1,18 +1,29 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 
+import { config } from '../config';
 @Injectable({
   providedIn: 'root'
 })
 
 export class ProductsService {
+  private categorySubject: Subject<any> = new Subject<any>(); // hold value
+  categoryObserver$: Observable<any> = this.categorySubject.asObservable(); //receive updates
 
-  private Base_URL = "https://bloomsy.onrender.com/api/products/";
+  private priceSubject: Subject<any> = new Subject<any>(); // hold value
+  priceObserver$: Observable<any> = this.priceSubject.asObservable(); //receive updates
+
+  private Base_URL = `${config.backendUrl}/api/products/`;
   http: any;
-
   constructor(private readonly myClient : HttpClient) { }
 
+  updateCategory(newValue: any): void {
+    this.categorySubject.next(newValue);
+  }
+  updatePrice(newValue: any): void {
+    this.priceSubject.next(newValue);
+  }
 
   GetAllProducts(){
     return this.myClient.get(this.Base_URL);
@@ -43,7 +54,7 @@ export class ProductsService {
     return this.myClient.get(this.Base_URL +"product-category/"+ category);
   }
   getProductsByPrice(priceObject: string): Observable<any> {
-    console.log("service")
+    console.log("service"+priceObject)
     return this.myClient.get(this.Base_URL +`filter/product-price?object=${encodeURIComponent(JSON.stringify(priceObject))}`);
   }
   getEachCatgory(): Observable<any> {

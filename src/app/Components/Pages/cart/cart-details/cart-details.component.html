@@ -18,7 +18,7 @@
 
         <ng-container matColumnDef="price">
           <th mat-header-cell *matHeaderCellDef>Price</th>
-          <td mat-cell *matCellDef="let element">{{element.product_id.price}}</td>
+          <td mat-cell *matCellDef="let element">{{element.product_id.price | currency: 'EGP'}}</td>
         </ng-container>
 
         <ng-container matColumnDef="quantity">
@@ -33,7 +33,7 @@
         <ng-container matColumnDef="total">
           <th mat-header-cell *matHeaderCellDef>Total</th>
           <td mat-cell *matCellDef="let element">{{element.product_id.price *
-            element.quantity}}</td>
+            element.quantity | currency: 'EGP'}}</td>
         </ng-container>
 
         <ng-container matColumnDef="delete">
@@ -59,7 +59,7 @@
         <div cellspacing="0" class="shop_table shop_table_responsive">
           <div class="cart-subtotal">
             <div class="title">Subtotal</div>
-            <div data-title="Subtotal"><span class="amount"><bdi><span class="symbol">EGP </span>{{totalPriceForAllProduct()}}</bdi></span>
+            <div data-title="Subtotal"><span class="amount"><bdi><span class="symbol">EGP </span>{{totalPriceForAllProduct() }}</bdi></span>
             </div>
           </div>
           <div class="shipping-totals shipping">

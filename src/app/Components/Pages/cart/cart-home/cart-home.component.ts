@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./cart-home.component.css']
 })
 export class CartHomeComponent {
-
+  ngOnInit() {
+    window.scroll(0, 0);
+  }
 }

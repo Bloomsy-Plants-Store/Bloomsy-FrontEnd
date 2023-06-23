@@ -15,6 +15,7 @@ import{ AdminGuard } from './middleware/permissions'
 import { ProfileComponent } from './Components/Pages/profile/profile.component';
 import { Error404Component } from './Components/Pages/error/error404/error404.component';
 
+
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'login', component: LoginComponent },
@@ -32,8 +33,9 @@ const routes: Routes = [
   },
   { path: 'cart' , component: CartHomeComponent},
   { path: 'profile' , component: ProfileComponent},
-  { path: 'error' , component: Error404Component},
-  { path: '**' , redirectTo: '/error', pathMatch: 'full'},
+  { path: 'error', component: Error404Component },
+  { path: '**', redirectTo: '/error', pathMatch: 'full' },
+
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

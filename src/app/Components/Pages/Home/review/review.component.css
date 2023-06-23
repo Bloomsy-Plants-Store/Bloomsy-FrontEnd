@@ -43,3 +43,9 @@
     opacity: 1;
   }
 }
+@media  screen and (max-width:800px) {
+  .review-body{
+    font-size:large;
+    text-align: center;
+  }
+}

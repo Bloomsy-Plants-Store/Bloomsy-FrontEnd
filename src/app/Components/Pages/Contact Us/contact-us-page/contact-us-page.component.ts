@@ -10,9 +10,12 @@ export class ContactUsPageComponent {
   constructor(private spinner: NgxSpinnerService) {}
   ngOnInit() {
     this.spinner.show();
+    window.scroll(0, 0);
 
     setTimeout(() => {
       this.spinner.hide();
     }, 3000);
   }
+
+
 }

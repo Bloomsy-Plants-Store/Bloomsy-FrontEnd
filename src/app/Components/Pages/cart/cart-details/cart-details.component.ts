@@ -11,6 +11,12 @@ export interface Product {
   total: number;
 }
 
+export interface MyCartItem {
+  product_id: string;
+  quantity: number;
+  price: number;
+}
+
 @Component({
   selector: 'app-cart-details',
   templateUrl: './cart-details.component.html',
@@ -28,7 +34,9 @@ export class CartDetailsComponent implements OnInit{
   displayedColumns: string[] = ['image', 'name', 'price', 'quantity', 'total', 'delete'];
 
   dataSource: Product[] = [];
-flag : any;
+  cartItems: MyCartItem[] = [];
+
+  flag : any;
   decreaseQuantity(element:any) {
     if (element.quantity > 1) {
       element.quantity--;
@@ -50,39 +58,67 @@ flag : any;
   }
 
 
-
-
   getAllProductsOnCart() {
     if (localStorage.getItem('access_token') != null) {
       let userId = JSON.parse(localStorage.getItem('access_token')!).UserId;
       this.myService.GetAllProductsInCart(userId).subscribe({
         next: (response: any) => {
           this.dataSource = response.cart;
+          // get product details that are needed
+          this.getMinimizeProduct(response.cart);
         },
         error: (err) => {
           console.log(err);
         }
       });
     }
-
   }
 
-  removeCartItem(element: any): void  {
+  getMinimizeProduct(cart: any) {
+    for (let oneItem of cart) {
+      const { product_id, quantity, price } = oneItem;
+      const existingItemIndex = this.cartItems.findIndex(item => item.product_id === product_id._id);
+
+      if (existingItemIndex !== -1) {
+        // Update the quantity of the existing item
+        this.cartItems[existingItemIndex].quantity = quantity;
+      } else {
+        // Add a new item to the cartItems array
+        const cartItem: MyCartItem = {
+          product_id: product_id._id,
+          quantity: quantity,
+          price: price
+        };
+        this.cartItems.push(cartItem);
+      }
+    }
+  }
+
+
+
+
+  removeCartItem(element: any): void {
     let userId = JSON.parse(localStorage.getItem('access_token')!).UserId;
     let userToken = localStorage.getItem('x-auth-token');
     let productId = element.product_id._id;
-    console.log(productId);
-    this.myService.deleteProductFromCart(userId, productId, userToken)
-      .subscribe({
-        next: (response: any) => {
-          this.myService.cartUpdatedSubject.next();
 
+    this.myService.deleteProductFromCart(userId, productId, userToken).subscribe({
+      next: (response: any) => {
+        // Remove the item from cartItems array
+        const itemIndex = this.cartItems.findIndex(item => item.product_id === productId);
+        if (itemIndex !== -1) {
+          this.cartItems.splice(itemIndex, 1);
+        }
+
+        // Notify cart update
+        this.myService.cartUpdatedSubject.next();
       },
       error: (err) => {
         console.log(err);
       }
-    })
+    });
   }
+
 
   checkout() {
     const accessToken = localStorage.getItem('access_token');
@@ -90,7 +126,7 @@ flag : any;
       this.router.navigate(['/login']);
     }
     else {
-      this.checkoutService.setCartObject(+this.totalPriceForAllProduct(), this.dataSource, this.flag = "checkout");
+      this.checkoutService.setCartObject(+this.totalPriceForAllProduct(), this.cartItems, this.flag = "checkout");
       this.router.navigate(['/checkout']);
     }
 

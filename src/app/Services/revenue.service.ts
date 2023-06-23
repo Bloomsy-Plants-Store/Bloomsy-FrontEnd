@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { config } from '../config';
 @Injectable({
   providedIn: 'root'
 })
 export class RevenueService {
 
-  private Base_URL = "https://bloomsy.onrender.com/";
+  private Base_URL = `${config.backendUrl}/`;
   http: any;
 
   constructor(private readonly myClient : HttpClient) { }

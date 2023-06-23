@@ -2,13 +2,16 @@
   <!--Sample Products Filter-->
   <div class="filter-heading d-flex justify-content-center my-5 w-100">
     <div class="filter-order-by">
-      <div class="filter-orderby">
-        <a  class="px-3 filter" [ngClass]="{ 'active': activeFilter === 'top-rate' }" (click)="filterProductsByTopRating('top-rate')"
+      <div class="filter-orderby d-flex flex-row justify-content-center">
+        <a
+          class="px-3 filter"
+          [ngClass]="{ active: activeFilter === 'top-rate' }"
+          (click)="filterProductsByTopRating('top-rate')"
           >Top <span>Rating</span></a
         >
         <a routerLink="" class="fw-lighter px-3">/</a>
         <a
-          [ngClass]="{ 'active': activeFilter === 'best-sell' }"
+          [ngClass]="{ active: activeFilter === 'best-sell' }"
           class="px-3 filter"
           (click)="filterProductsByBestSelling('best-sell')"
           >Best <span>Selling</span></a
@@ -24,7 +27,7 @@
         *ngFor="let product of Products"
       >
         <!--Image Section-->
-        <div class="image-container">
+        <div class="image-container w-100">
           <img
             class="col-12"
             src="{{ product.imageUrl[0] }}"
@@ -49,17 +52,39 @@
             class="overlay col-12 d-flex justify-content-center align-items-end gap-3"
             [style.backgroundImage]="'url(' + product.imageUrl[1] + ')'"
           >
-            <button data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart" (click)="addProductToCart(product._id, product.price);">
+            <button
+              data-bs-toggle="tooltip"
+              data-bs-placement="top"
+              title="Add to Cart"
+              (click)="addProductToCart(product._id, product.price)"
+            >
               <i
                 class="fi fi-rs-shopping-bag d-flex justify-content-center align-items-center"
               ></i>
             </button>
-            <button data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist" class="Wishlist" (click)="addOrRemoveFavourite(product?._id);">
-              <i class="bi bi-heart" *ngIf="!favoritesMap.get(product?._id)"></i>
-              <i class="bi bi-heart-fill filled-fav" *ngIf="favoritesMap.get(product?._id)"></i>
+            <button
+              data-bs-toggle="tooltip"
+              data-bs-placement="top"
+              title="Wishlist"
+              class="Wishlist"
+              (click)="addOrRemoveFavourite(product?._id)"
+            >
+              <i
+                class="bi bi-heart"
+                *ngIf="!favoritesMap.get(product?._id)"
+              ></i>
+              <i
+                class="bi bi-heart-fill filled-fav"
+                *ngIf="favoritesMap.get(product?._id)"
+              ></i>
             </button>
 
-            <button routerLink="/product/{{ product._id }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Quick Search">
+            <button
+              routerLink="/product/{{ product._id }}"
+              data-bs-toggle="tooltip"
+              data-bs-placement="top"
+              title="Quick Search"
+            >
               <i
                 class="fi fi-rs-search d-flex justify-content-center align-items-center"
               ></i>
@@ -77,15 +102,15 @@
             *ngIf="product.discount != 0; else nodiscount"
           >
             <span class="text-line-through me-2">{{
-              product.price | currency
+              product.price |  currency: 'EGP'
             }}</span>
             <span class="text-danger">{{
               product.price - (product.price * product.discount) / 100
-                | currency
+                |  currency: 'EGP'
             }}</span>
           </span>
           <ng-template #nodiscount>
-            <span>{{ product.price | currency }}</span>
+            <span>{{ product.price |  currency: 'EGP' }}</span>
           </ng-template>
         </div>
       </div>
@@ -97,7 +122,9 @@
     <a routerLink="/products" class="px-3 text-decoration-none">
       <div class="view-more-btn-container d-flex align-items-center">
         <div class="circle">
-          <span><i class="fi fi-rs-circle align-middle" style="font-size: 48px;"></i></span>
+          <span
+            ><i class="fi fi-rs-circle align-middle" style="font-size: 48px"></i
+          ></span>
         </div>
         <div class="view-btn">
           <span class="bg-light py-1 rounded">View More</span>
@@ -108,3 +135,46 @@
   </div>
 </div>
 
+<!--add To Favourite Modal-->
+<div
+  class="modal fade custom-modal"
+  id="addToFavouriteModal"
+  #addToFavouriteModal
+>
+  <div class="modal-dialog modal-confirm modal-dialog-centered m-auto">
+    <div class="modal-content">
+      <div class="d-flex flex-column justify-content-center w-100">
+        <div class="icon-box text-center">
+          <img
+            src="./assets/images/icons/addtofavourite.gif"
+            width="500"
+            height="500"
+          />
+        </div>
+        <h4 class="modal-title mb-3">Added To Favourite <br/>Successfully :)</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--remove From Favourite Modal-->
+<div
+  class="modal fade custom-modal"
+  id="removeFromFavouriteModal"
+  #removeFromFavouriteModal
+>
+  <div class="modal-dialog modal-confirm modal-dialog-centered m-auto">
+    <div class="modal-content">
+      <div class="d-flex flex-column justify-content-center w-100">
+        <div class="icon-box text-center">
+          <img
+            src="./assets/images/icons/removefromfavourite.gif"
+            width="500"
+            height="500"
+          />
+        </div>
+        <h4 class="modal-title mb-3">Removed From Favourite <br/>Successfully :(</h4>
+      </div>
+    </div>
+  </div>
+</div>

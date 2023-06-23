@@ -93,10 +93,10 @@
   <div class="w-75 alert alert-success my-3 text-start pl-2" *ngIf="successMessage">
     <div>{{ successMessage }}</div>
   </div>
-  <app-all-products-table-pagination
-    class="w-75"
-  ></app-all-products-table-pagination>
-</div>
+  <div class="w-75 table-container">
+    <app-all-products-table-pagination></app-all-products-table-pagination>
+  </div>
+
 
 <!--Add New Product Modal-->
 <div class="modal fade" id="addNewModal">
@@ -373,7 +373,7 @@
               data-bs-dismiss="modal"
               [disabled]="!productForm.valid"
             >
-              Update
+              Create
             </button>
           </div>
         </form>

@@ -13,45 +13,46 @@ export class FilterSideBarComponent implements OnInit {
   categories:any
   minValue: number = 50;
   maxValue: number = 1500;
+  finalMinValue: number | undefined;
+  finalMaxValue: number | undefined;
   selectedOption: string | undefined;
   activeItem: any = null;
+  FiltercategoryName: any;
   // sortOptions: string[] = ['Default sorting','Sort by average rating', 'Sort by price: low to high', 'Sort by price: high to low'];
   @Output() myPriceEvent = new EventEmitter();
-  @Output() myCatgoryEvent = new EventEmitter();
 
   constructor(private spinner: NgxSpinnerService, public myService: ProductsService,private renderer: Renderer2) {}
-  @Input() FiltercategoryName: any;
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (this.FiltercategoryName) {
-      this.activeCategory(this.FiltercategoryName);
-    }
-  }
   ngOnInit(): void {
     this.spinner.show();
     this.myService.getEachCatgory().subscribe({
       next: (response: any) => {
         this.categories = response.data;
         this.spinner.hide();
+        this.myService.categoryObserver$.subscribe((value: any) => {
+          this.FiltercategoryName = value;
+          this.activeCategory(this.FiltercategoryName);
+        });
       },
       error: (err) => {
         console.log(err);
         this.spinner.hide();
       },
     });
+
   }
 
   options: Options = {
-    floor: this.minValue,  //the minimum value of the slider
-    ceil: this.maxValue, //the maximum value of the slider
+    floor: this.minValue,
+    ceil: this.maxValue,
     translate: (value: number, label: LabelType): string => {
       switch (label) {
         case LabelType.Low:
-          this.minValue=value;
-          return "<b>Min price:</b> $" + value;
+          this.minValue = value;
+          return "<b>Min price:</b> EGP" + value;
         case LabelType.High:
-          this.maxValue=value;
-          return "<b>Max price:</b> $" + value;
+          this.maxValue = value;
+          return "<b>Max price:</b> EGP" + value;
         default:
           return "$" + value;
       }
@@ -78,18 +79,20 @@ export class FilterSideBarComponent implements OnInit {
       min:this.minValue,
       max:this.maxValue
     }
+    console.log(price_range);
+
     this.handleContainerClick("ALL Products");
-    this.myPriceEvent.emit(price_range);
+    this.myService.updatePrice(price_range);
+
   }
 
 
 
   HandleCatgoryEvent(categoryName: string) {
-    this.myCatgoryEvent.emit(categoryName);
+    this.myService.updateCategory(categoryName);
   }
 
   handleContainerClick(categoryName: string) {
-
     this.HandleCatgoryEvent(categoryName);
     this.activeCategory(categoryName);
   }

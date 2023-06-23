@@ -1,0 +1,201 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+#helpdesk {
+  font-family: "Roboto", sans-serif;
+}
+
+.chatBtn {
+  width: 55px;
+  height: 55px;
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: none;
+  background-color: #3c5742;
+  background-image: linear-gradient(147deg, #3c5742, #99ce9d);
+  cursor: pointer;
+  padding-top: 3px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.164);
+  background-size: 300%;
+  background-position: left;
+  transition-duration: 1s;
+  z-index: 1000;
+}
+
+.tooltip {
+  position: absolute;
+  top: -40px;
+  opacity: 0;
+  background-color: #3c5742;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition-duration: .5s;
+  pointer-events: none;
+  letter-spacing: 0.5px;
+}
+
+.chatBtn:hover .tooltip {
+  opacity: 1;
+  transition-duration: .5s;
+}
+
+.chatBtn:hover {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+#helpdesk-popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 350px;
+  height: 50vh;
+  min-height: 450px;
+  background-color: white;
+  box-shadow: 0 0 10px #99ce9d;
+  border-radius: 5px;
+  z-index: 1000;
+  display: none;
+}
+
+#helpdesk-popup-header {
+  font-family: 'Dancing Script', cursive ;
+  background-color: #82b086;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.close-btn {
+  float: right;
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  position: relative;
+}
+
+.close-btn:before {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 20px;
+  background-color: #FFF;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  transition: ease-out 0.3s all;
+}
+
+.close-btn:after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 20px;
+  background-color: #FFF;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  transition: ease-out 0.3s all;
+}
+
+.close-btn:hover:before, .close-btn:focus:before {
+  transform: translate(-50%, -50%) rotate(135deg);
+}
+
+.close-btn:hover:after, .close-btn:focus:after {
+  transform: translate(-50%, -50%) rotate(225deg);
+}
+
+#helpdesk-popup-body {
+  height: calc(100% - 100px);
+  padding: 10px;
+}
+
+#helpdesk-popup-footer {
+  background-color: #82b086;
+  color: white;
+  font-size: 14px;
+  padding: 10px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.InputContainer {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  padding-left: 15px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.075);
+}
+
+#helpdesk-popup-input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-size: 0.9em;
+  caret-color: #82b086;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.sendMessage{
+  border: none;
+  cursor: pointer;
+}
+
+.messages {
+  height: 100%;
+  overflow: auto;
+}
+
+.message {
+  display: flow-root;
+  width: 100%;
+}
+
+.client {
+  background-color: #82b086;
+  color: white;
+  border-radius: 15px;
+  border-top-left-radius: 0px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+  max-width: 80%;
+}
+
+.user {
+  border: 0.5px solid #82b086;
+  background-color: #fff;
+  border-radius: 15px;
+  border-top-right-radius: 0px;
+  color: #82b086;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+  max-width: 80%;
+  text-align: right;
+  float: right;
+}
+
+

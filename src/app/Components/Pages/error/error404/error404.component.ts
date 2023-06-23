@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./error404.component.css']
 })
 export class Error404Component {
+  ngOnInit() {
+    window.scroll(0, 0);
+  }
 
 }

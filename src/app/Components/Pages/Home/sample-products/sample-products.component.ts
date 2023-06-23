@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ProductsService } from 'src/app/Services/products.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CartService } from 'src/app/Services/cart.service';
@@ -17,6 +17,8 @@ export class SampleProductsComponent implements OnInit {
   bestSellingProducts: any;
   activeFilter: any = null;
   isFavorited: boolean = false;
+  @ViewChild('addToFavouriteModal') addToFavouriteModal!: ElementRef;
+  @ViewChild('removeFromFavouriteModal') removeFromFavouriteModal!: ElementRef;
   favoritesMap: Map<string, boolean> = new Map<string, boolean>();
 
   constructor(
@@ -57,6 +59,15 @@ export class SampleProductsComponent implements OnInit {
     });
   }
 
+  showAddToFavouriteModal(){
+    const modal = new bootstrap.Modal(this.addToFavouriteModal.nativeElement);
+    modal.show();
+  }
+
+  showRemoveFromFavouriteModal(){
+    const modal = new bootstrap.Modal(this.removeFromFavouriteModal.nativeElement);
+    modal.show();
+  }
 
   // Bootstrap Tooltip Intialization
   ngAfterViewInit() {
@@ -116,6 +127,8 @@ export class SampleProductsComponent implements OnInit {
   }
 
   addOrRemoveFavourite(productId: any) {
+    this.spinner.show();
+    
     if (localStorage.getItem('access_token')) {
       let userId = JSON.parse(localStorage.getItem('access_token')!).UserId;
       const isFavorited = this.favoritesMap.get(productId) || false;
@@ -125,9 +138,12 @@ export class SampleProductsComponent implements OnInit {
         this.favouritesService.deleteProductFromFavourites(userId, productId).subscribe({
           next: (response: any) => {
             this.favoritesMap.set(productId, false);
+            this.spinner.hide();
+            this.showRemoveFromFavouriteModal();
           },
           error: (err: any) => {
             console.log(err);
+            this.spinner.hide();
           }
         });
       } else {
@@ -135,9 +151,12 @@ export class SampleProductsComponent implements OnInit {
         this.favouritesService.addProductToFavourites(userId, productId).subscribe({
           next: (response: any) => {
             this.favoritesMap.set(productId, true);
+            this.spinner.hide();
+            this.showAddToFavouriteModal();
           },
           error: (err: any) => {
             console.log(err);
+            this.spinner.hide();
           }
         });
       }

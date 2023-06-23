@@ -6,7 +6,7 @@
       <div class="col-10 col-md-4 col-lg-3 border-white mb-3"
         *ngFor="let product of Products | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
         <!--Image Section-->
-        <div class="image-container">
+        <div class="image-container w-100">
           <img class="col-12" src="{{ product.imageUrl[0] }}" alt="{{ product.name }}.jpg" height="400"/>
           <div class="voucher w-100 px-3">
             <div class="discount bg-danger text-white w-auto px-2" *ngIf="product.discount != 0">
@@ -38,15 +38,15 @@
 
           <span class="price-section" *ngIf="product.discount != 0; else nodiscount">
             <span class="text-line-through me-2">{{
-              product.price | currency
+              product.price |  currency: 'EGP'
               }}</span>
             <span class="text-danger">{{
               product.price - (product.price * product.discount) / 100
-              | currency
+              | currency: 'EGP'
               }}</span>
           </span>
           <ng-template #nodiscount>
-            <span>{{ product.price | currency }}</span>
+            <span>{{ product.price | currency: 'EGP' }}</span>
           </ng-template>
         </div>
       </div>
@@ -55,5 +55,49 @@
   <div class="mt-4 text-center mx-auto">
     <pagination-controls (pageChange)="currentPage= $event"></pagination-controls>
 
+  </div>
+</div>
+
+<!--add To Favourite Modal-->
+<div
+  class="modal fade custom-modal"
+  id="addToFavouriteModal"
+  #addToFavouriteModal
+>
+  <div class="modal-dialog modal-confirm modal-dialog-centered m-auto">
+    <div class="modal-content">
+      <div class="d-flex flex-column justify-content-center w-100">
+        <div class="icon-box text-center">
+          <img
+            src="./assets/images/icons/addtofavourite.gif"
+            width="500"
+            height="500"
+          />
+        </div>
+        <h4 class="modal-title mb-3">Added To Favourite <br/>Successfully :)</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--remove From Favourite Modal-->
+<div
+  class="modal fade custom-modal"
+  id="removeFromFavouriteModal"
+  #removeFromFavouriteModal
+>
+  <div class="modal-dialog modal-confirm modal-dialog-centered m-auto">
+    <div class="modal-content">
+      <div class="d-flex flex-column justify-content-center w-100">
+        <div class="icon-box text-center">
+          <img
+            src="./assets/images/icons/removefromfavourite.gif"
+            width="500"
+            height="500"
+          />
+        </div>
+        <h4 class="modal-title mb-3">Removed From Favourite <br/>Successfully :(</h4>
+      </div>
+    </div>
   </div>
 </div>

@@ -64,7 +64,7 @@
         <div class="product-rating">
           <ng-container *ngFor="let star of getStarsArray(Product?.rate)">
             <i
-            class="bi bi-star"
+            class="bi bi-star-fill"
               [ngClass]="{ 'half-star': star === 0.5 }"
             ></i>
           </ng-container>
@@ -74,9 +74,9 @@
         <div
           class="product-price d-flex justify-content-start justify-content-sm-center justify-content-lg-start"
         >
-          <p class="last-price" *ngIf="Product?.discount">${{ Product?.price }}</p>
+          <p class="last-price" *ngIf="Product?.discount">{{ Product?.price | currency: 'EGP' }}</p>
           <p class="new-price">
-            ${{ Product?.price - Product?.discount / 100 }}
+            {{ Product?.price - Product?.discount / 100  | currency: 'EGP'}}
           </p>
         </div>
         <hr class="mt-4 mb-4" />
@@ -171,6 +171,50 @@
             <br />
           </ul>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--add To Favourite Modal-->
+<div
+  class="modal fade custom-modal"
+  id="addToFavouriteModal"
+  #addToFavouriteModal
+>
+  <div class="modal-dialog modal-confirm modal-dialog-centered m-auto">
+    <div class="modal-content">
+      <div class="d-flex flex-column justify-content-center w-100">
+        <div class="icon-box text-center">
+          <img
+            src="./assets/images/icons/addtofavourite.gif"
+            width="500"
+            height="500"
+          />
+        </div>
+        <h4 class="modal-title mb-3">Added To Favourite <br/>Successfully :)</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--remove From Favourite Modal-->
+<div
+  class="modal fade custom-modal"
+  id="removeFromFavouriteModal"
+  #removeFromFavouriteModal
+>
+  <div class="modal-dialog modal-confirm modal-dialog-centered m-auto">
+    <div class="modal-content">
+      <div class="d-flex flex-column justify-content-center w-100">
+        <div class="icon-box text-center">
+          <img
+            src="./assets/images/icons/removefromfavourite.gif"
+            width="500"
+            height="500"
+          />
+        </div>
+        <h4 class="modal-title mb-3">Removed From Favourite <br/>Successfully :(</h4>
       </div>
     </div>
   </div>
